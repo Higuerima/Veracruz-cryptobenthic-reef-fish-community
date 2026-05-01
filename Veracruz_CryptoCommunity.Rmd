@@ -1,0 +1,2143 @@
+---
+Research_title: "Community structure and microhabitat associations of cryptobenthic reef fishes in Veracruz, Mexico"
+
+Research_authors: Mariana Rivera‐Higueras · Christopher R. Hemingson · Aurora de Monserrat Pouchoulen Alemán · Kyra Jean M. Cipolla · Philip M. Souza Jr. · Simon J. Brandl
+
+Article_DOI: https://doi.org/10.1007/s00338-025-02763-1
+
+Code_author: "Mariana Rivera-Higueras"
+
+
+Research_Abstract:
+  Local habitat availability can strongly affect animal communities. On coral reefs, the biodiversity of small, bottom-dwelling (‘cryptobenthic’) reef fishes and drivers of their community assembly have yet to be explored in many locations. Here, we investigate how local and regional factors shape the structure and composition of cryptobenthic reef fish communities in the Veracruz Reef System National Park (VRS) in the Gulf of Mexico (GoM). Focusing on five reefs in the VRS, we surveyed cryptobenthic reef fish communities at scales of reef outcrops (~ 3–5 m2) and isolated microhabitats, while also quantifying the benthic composition of each reef to determine microhabitat availability. We found no significant differences in species richness or abundance across park regions and reef zones, but community composition differed qualitatively across reef zones. Furthermore, we discovered strong differences in cryptobenthic reef fishes’ preferences for various microhabitats, which are likely to drive community assembly and provide evidence for species-specific vulnerabilities to reef degradation. Caves harbored the highest biodiversity and abundance of cryptobenthic fishes, while gorgonian soft corals and algae supported the fewest species and individuals. The endemic gobies Tigrigobius redimiculus and Elacatinus jarocho both showed high abundance and occurrence but displayed opposite patterns of microhabitat specialization; T. redimiculus was categorized as a microhabitat generalist, while E. jarocho was revealed as a cave-dwelling specialist species. Overall, our quantitative exploration of the cryptobenthic reef fish community in the southwest GoM provides a crucial baseline for habitat and biodiversity monitoring in the region and highlights E. jarocho as an emblematic, endemic indicator species that will be vulnerable to extinction if further reduction of habitat complexity occurs.
+  
+  
+---
+
+```{r libraries}
+
+library(ggplot2)
+library(ggdist)
+library(distributional)
+library(tidyverse)
+library(ggdark)
+library(ecodist)
+library(readxl)
+library(ggrepel)
+library(scales)
+library(lme4)
+library(sjPlot)
+library(ggfortify)
+library(fishualize)
+library(vegan)
+library(cowplot)
+library(viridis)
+library(magick)
+library(bipartite)
+library(bipartiteD3)
+library(openxlsx)
+library(here)
+library(MASS)
+library(ggpubr)
+library(pscl)
+library(boot)
+library(lemon)
+library(electivity)
+library(tidyr)
+library(MicroNiche)
+```
+
+
+```{r Data frames pulled from excel, warning=FALSE}
+
+#All data of fish processed
+Fish_DataFrame <- read_excel("Fish_DataFrame.csv")
+    #View(Fish_DataFrame)
+
+Microh_DataFrame<-read_xlsx("Microh_DataFrame.csv") 
+    #View(Microh_DataFrame)
+
+
+############################################
+# CORALNET dataframes #
+
+CORALNET_annotations<- read_csv("annotations.csv") %>% 
+                      dplyr::select(Name, Site_name, Transect, Row, Column, Label)
+    #View(CORALNET_annotations)
+  
+CORALNET_metadata <- read_csv("metadata.csv")
+    #View(CORALNET_metadata)
+
+CORALNET_percent_covers <- read_csv("percent_covers_abbreviations.csv")
+    #View(CORALNET_percent_covers)
+
+
+```
+
+First to work with any data frame, its necessary to check that the fish and the microh data frame match correctly. 
+
+```{r Checking that the dataframes Fish and Microh match}
+
+
+#Total fishes in microh
+Mh.data.Tfish<- Microh_DataFrame %>% 
+  drop_na(Fish_catched) %>% 
+  group_by(Country, Year) %>% 
+  summarise(tfish= sum(Fish_catched))
+Mh.data.Tfish
+
+# They have to match! This is fish caught in both data sets
+Fish.roving<- Fish_DataFrame  %>%
+  filter(Methodology %in% c("Roving Quadrant", "Transect")) %>% 
+ group_by(Country, Year) %>% 
+  summarize(FishT=n())
+Fish.roving
+Mh.data.Tfish
+
+
+#If the data frames don't match
+Matching.Microh<- Microh_DataFrame %>% 
+  dplyr::select(Microhabitat_label, Fish_catched) %>% 
+  drop_na()
+    #View(Matching.Microh)
+
+Matching.FishCount<- Fish_DataFrame %>% 
+ dplyr:: group_by(Microhabitat_label) %>% 
+ dplyr:: summarise(Tfish= n()) %>% 
+  dplyr::full_join(Matching.Microh ,  by = "Microhabitat_label") %>% 
+   replace_na(list(Tfish = 0)) %>% 
+ dplyr:: mutate(Match = ifelse(Tfish==Fish_catched, "Yes", "No")) %>% 
+ dplyr:: filter( Match== "No")
+    #View(Matching.FishCount)
+
+    #View(Microh_DataFrame)
+
+
+
+
+```
+
+```{r Creating Veracruz cryptos of fish data frames}
+
+#Creating a data frame to work with cryptos
+#Duplicating rows based on the number of ind were in the tube, they share same tag. The weight and leng are repeted as well. Do not consider that variable.
+
+Cryptos.VER.DataFrame<- Fish_DataFrame %>% 
+   filter(Country == "Mexico") %>% 
+filter(!Fish_species %in% c("Aulostomus maculatus",
+                            "Azurina multilineata", 
+                            "Canthigaster rostrata", 
+                            "Carangidae", 
+                            "Cephalopolis cruentata",
+                            "Chromis cyanea",
+                            "Chromis scotti",
+                            "Gymnothorax sp", 
+                            "Gymnothorax sp.", 
+                            "Halichoeres bivittatus",
+                            "Haemulon sp.", 
+                            "Halichores bivittatus", 
+                            "Halichoeres burekae",
+                            "Halichoeres macculipinna", 
+                            "Halichores garnoti",
+                            "Neopomacentrus cyanomos", 
+                            "Neoniphon coruscum", 
+                            "Pterois volitans", 
+                            "Sparisoma sp.", 
+                            "Serranus tigrinus",
+                            "Stegastes partitus", 
+                            "Stegastes adustus",
+                            "Stegastes planifrons", 
+                            "Stegastes partitus", 
+                            "Stegastes xanthurus",
+                            "Synodus intermedius",
+                            "Thalassoma bifasciatum",
+                            "Unidentified" )) %>% 
+ tidyr:: uncount( No_ind_in_tube) %>% #this function adds the number of fish in tubes
+ 
+mutate(Park_region = ifelse (Reef_name =="Blanquilla","North",
+                  ifelse (Reef_name =="Verde","North", 
+                  ifelse (Reef_name =="Anegada de Adentro","North",
+                  ifelse (Reef_name =="Enmedio","South",
+                  ifelse (Reef_name =="Cabezo","South","Pez")))))) %>% 
+  mutate(Fish_species = case_when(
+    Fish_species == "Enneanectes cf. altivelis" ~ "Enneanectes altivelis",
+    Fish_species == "Hypleurochilus sp." ~ "Hypleurochilus bermudensis",
+    Fish_species == "Lythrypnus cf. nesiotes" ~ "Lythrypnus nesiotes", 
+    Fish_species == "Lythrypnus phorellus/nesiotes" ~ "Lythrypnus nesiotes", 
+    Fish_species == "Coryphopterus personatus/hyalinus" ~ "Coryphopterus personatus",
+                     TRUE ~Fish_species )) %>% 
+  dplyr::select(-Dive, -`SL(mm)`, -DNA_method, -Note, -`Photo quality`, -STRIwebsite,
+                -Box_storage, -Group_humid_weight)
+  
+    #View(Cryptos.VER.DataFrame)
+    #View(Fish_DataFrame)
+
+
+
+```
+
+```{r Taxa info using the two sampling methodologies}
+
+Sp.Rich.all<- Cryptos.VER.DataFrame %>% 
+  distinct(Fish_species)
+    #View(Sp.Rich.all)
+
+Gen.Rich.all<- Cryptos.VER.DataFrame %>% 
+  distinct(Genus)
+    #View(Gen.Rich.all)
+
+Fam.Rich.all<- Cryptos.VER.DataFrame %>% 
+  group_by(Family) %>% 
+  summarise(ngenus = n_distinct(Genus),
+            nSp = n_distinct(Fish_species)) %>%  
+  na.omit()
+    #View(Fam.Rich.all)
+sum(Fam.Rich.all$ngenus)
+
+```
+
+
+#### Sampling effort ###
+In Crypto stations
+
+```{r VER cryptos richness and abundance in CS}
+
+Cryptos.VER.DataFrame %>% 
+group_by(Methodology) %>% 
+  drop_na(Fish_tag_ID) %>% 
+  summarise(Total_abun= n_distinct(Fish_tag_ID))
+
+## Cryptos species in cryptostations
+CS.richness<- Cryptos.VER.DataFrame%>% 
+  filter(Methodology== "CryptoStation") %>% 
+  group_by(Family, Fish_species) %>% 
+  dplyr::select(Family, Fish_species) %>% 
+  distinct() %>% 
+  group_by(Family) %>% 
+  mutate(Sp_Fam = n())
+    #View(CS.richness)
+    #View(Cryptos.VER.DataFrame)
+
+## Study effort
+#Number of CryptoStations by reef
+Cryptos.VER.DataFrame %>% 
+  filter(Methodology== "CryptoStation") %>% 
+  group_by(Reef_name) %>% 
+  distinct(Microhabitat_No) %>% 
+  summarise(CryptoStation_done= n())
+    #View(Cryptos.VER.DataFrame)
+
+
+CS.Zone<- Cryptos.VER.DataFrame%>% 
+  filter(Methodology== "CryptoStation") %>% 
+  group_by(Reef_zone,Reef_name, Microhabitat_No) %>% 
+  distinct(Microhabitat_No)
+CS.Zone
+####
+
+
+#Main data frame that displays the richnes and abundace of cryptos per CryptoStation
+Crypto.VER.abun.rich<-Cryptos.VER.DataFrame %>% 
+  filter(Methodology == "CryptoStation") %>% 
+  group_by(Park_region, Reef_name, Reef_zone, Microhabitat_No) %>%
+  summarize(richness  = n_distinct(Fish_species),
+            abundance = n()) %>% 
+  ungroup() %>% 
+  group_by(Reef_name) %>% 
+  mutate( mean_abun= mean(abundance),
+          sd_abun = sd(abundance),
+          mean_richness = mean(richness),
+          sd_rich = sd(richness))
+    #View(Crypto.VER.abun.rich)
+
+hist(Crypto.VER.abun.rich$richness, 
+     breaks = "Sturges",
+     xlab = "Abundance",
+     main = NA)
+
+#Richness and abundance by Family
+CS.CryptoSp<- Cryptos.VER.DataFrame %>% 
+  filter(Methodology == "CryptoStation") %>% 
+  distinct(Family,Fish_species) %>% 
+  group_by(Family) %>% 
+  mutate(n= n())
+    #View(CS.CryptoSp)
+
+Mh.cryptoSp <- Cryptos.VER.DataFrame %>% 
+  filter(Methodology == "Roving Quadrant") %>% 
+  distinct(Family, Fish_species)
+    #View(Mh.cryptoSp)
+
+CS.Mh.CryptoSp<-Cryptos.VER.DataFrame %>% 
+ filter(Methodology %in% c( "CryptoStation", "Roving Quadrant")) %>% 
+  dplyr::select(Family, Fish_species, Methodology) %>% 
+         distinct(Family, Fish_species, Methodology) %>% 
+         group_by(Family) %>% 
+         filter(!duplicated(Fish_species)) %>% 
+         ungroup() %>% 
+         group_by(Family, Methodology) %>% 
+         summarize(count_sp= n_distinct(Fish_species)) %>% 
+         ungroup() %>% 
+         group_by(Family) %>% 
+         mutate(Total_rich= sum(count_sp))
+    #View(CS.Mh.CryptoSp)
+ 
+
+
+```
+
+
+
+#### CryptoStation analysis ###
+
+```{r General information of CryptoStations}
+
+    #View(Cryptos.VER.DataFrame)
+
+Sp.Reef.zone<- Cryptos.VER.DataFrame %>% 
+  group_by(Fish_species, Reef_zone) %>%
+  summarise(Ab= n(),
+            T= sum(Ab)) %>% 
+  pivot_wider(names_from = Reef_zone, values_from = Ab, values_fill = 0)
+
+    #View(Sp.Reef.zone)
+
+write.csv(Sp.Reef.zone, file= "Ch1/Microh_Resulted_ExcelFrames/Sp.Reef.zone.csv")
+
+
+
+```
+
+
+```{r GLM for richness for Park region}
+
+CryptoCS.Pregion.richness.glm<- glm(richness~Park_region,
+                                   data= Crypto.VER.abun.rich,
+                                   family= "poisson")
+summary(CryptoCS.Pregion.richness.glm)
+CryptoCS.Pregion.richness.glm$coefficients
+    #View(Crypto.VER.abun.rich)
+#Coefficients:
+     #            Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)        2.42775     0.09901   24.519   <2e-16 ***
+#Park_regionSouth  -0.15415     0.15656   -0.985    0.325   
+
+CryptoCS.Pregion.richness.glm.prediction<- data.frame(predicted_data=predict(CryptoCS.Pregion.richness.glm, 
+           type = "response", se.fit = T),
+           richness_raw= Crypto.VER.abun.rich$richness,
+           Park_region = Crypto.VER.abun.rich$Park_region, 
+           Reef_name = Crypto.VER.abun.rich$Reef_name, 
+           Reef_zone = Crypto.VER.abun.rich$Reef_zone, 
+           Microhabitat_No = Crypto.VER.abun.rich$Microhabitat_No)
+    #View(CryptoCS.Pregion.richness.glm.prediction)
+
+pd<- position_dodge(0.9)
+
+
+
+CryptoCS.Pregion.richness.glm.ggplot<-ggplot(data= CryptoCS.Pregion.richness.glm.prediction, 
+          aes(x= Park_region, y= richness_raw))+
+  theme_cowplot(font_size = 10) + 
+  geom_point(aes(x= Park_region, 
+                  y= richness_raw, 
+                  colour= Park_region),
+                  position=position_jitterdodge(jitter.width = 0.3,
+                                                dodge.width = 1), 
+                 size= 4, alpha= 0.2) +
+  geom_point(aes(x= Park_region, y= predicted_data.fit, 
+                 colour= Park_region), 
+             position = pd,
+                 size= 4)  +
+  ylab("Richness")+
+  xlab("Park region")+
+  geom_errorbar(aes(ymin= predicted_data.fit-predicted_data.se.fit,
+                  ymax=predicted_data.fit+predicted_data.se.fit, colour= Park_region), 
+              width = 0,
+              linewidth= 1,
+              alpha=0.5,
+              position= pd)+
+  scale_colour_manual(values= c("#1C6E8C", "black"))+
+  theme(axis.text = element_text(size= 10), 
+       axis.title = element_text(face="bold", 
+                                 size = 10, 
+                                 vjust = -2),
+       legend.title = element_text(face= "bold")) +
+  scale_y_continuous(limits = c(0,15))
+CryptoCS.Pregion.richness.glm.ggplot
+
+CryptoCS.Pregion.richness.glm.ggplot.Nolabel<- CryptoCS.Pregion.richness.glm.ggplot +
+  theme(legend.position = "none")
+
+```
+```{r GLM.NB for abundance Park region}
+
+CryptoCS.Pregion.abundance.glm.nb<- glm.nb(abundance~Park_region,
+                                   data= Crypto.VER.abun.rich)
+summary(CryptoCS.Pregion.abundance.glm.nb)
+
+#Coefficients:
+#                 Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)        4.6465     0.1868  24.875   <2e-16 ***
+#Park_regionSouth  -0.2699     0.2832  -0.953    0.341 
+
+CryptoCS.Pregion.abundance.glm.nb.prediction <- data.frame(
+           predicted_data = predict(CryptoCS.Pregion.abundance.glm.nb, 
+           type = "response", 
+           se.fit = T),
+           abundance_raw = Crypto.VER.abun.rich$abundance,
+           Park_region = Crypto.VER.abun.rich$Park_region, 
+           Reef_name = Crypto.VER.abun.rich$Reef_name, 
+           Reef_zone = Crypto.VER.abun.rich$Reef_zone, 
+           Microhabitat_No = Crypto.VER.abun.rich$Microhabitat_No)
+    #View(CryptoCS.Pregion.abundance.glm.nb.prediction)
+
+CryptoCS.Pregion.abundance.glm.nb.ggplot<- ggplot(
+          data= CryptoCS.Pregion.abundance.glm.nb.prediction, 
+          aes(x= Park_region, y= abundance_raw))+
+  theme_cowplot(font_size = 10) + 
+  geom_point(aes(x= Park_region, 
+                 y= abundance_raw, 
+                 colour= Park_region),
+                    position=position_jitterdodge(jitter.width = 0.3,
+                                                  dodge.width = 1), 
+                 size= 4, 
+                 alpha= 0.2) +
+  geom_point(aes(x= Park_region, 
+                 y= predicted_data.fit, 
+                 colour= Park_region), 
+                    position = pd,
+                    size= 4)+
+  scale_colour_manual(values= c("#1C6E8C", "black")) +
+  ylab("Abundance") +
+  xlab("Park region") + 
+  geom_errorbar(aes(ymin= predicted_data.fit-predicted_data.se.fit,
+                    ymax=predicted_data.fit+predicted_data.se.fit, 
+                    colour= Park_region), 
+                            width = 0,
+                            linewidth= 1, 
+                            alpha=0.5, 
+                            position= pd) +
+  theme(axis.text = element_text(size= 10), 
+        axis.title = element_text(face="bold", 
+                                  size = 10, 
+                                  vjust = -2),
+        legend.title = element_text(face= "bold")) +
+  scale_y_continuous(limits = c(0,250)) 
+
+CryptoCS.Pregion.abundance.glm.nb.ggplot
+
+CryptoCS.Pregion.abundance.glm.nb.ggplot.Nolabel<-CryptoCS.Pregion.abundance.glm.nb.ggplot  + 
+  theme(legend.position = "none")
+
+
+```
+
+```{r GLM for richness by Reef zone}
+
+CryptoCS.Rzone.richness.glm<- glm(richness~Reef_zone,
+                                   data= Crypto.VER.abun.rich,
+                                   family= "poisson")
+summary(CryptoCS.Rzone.richness.glm)
+    #View(Crypto.VER.abun.rich)
+
+#Coefficients:
+      #         Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)     2.41429    0.09017  26.776   <2e-16 ***
+#Reef_zoneFront -0.17358    0.17148  -1.012    0.311    
+
+CryptoCS.Rzone.richness.glm.prediction<- data.frame(predicted_data=predict(CryptoCS.Rzone.richness.glm, 
+           type = "response", se.fit = T),
+           richness_raw = Crypto.VER.abun.rich$richness,
+           Park_region = Crypto.VER.abun.rich$Park_region, 
+           Reef_name = Crypto.VER.abun.rich$Reef_name, 
+           Reef_zone = Crypto.VER.abun.rich$Reef_zone, 
+           Microhabitat_No = Crypto.VER.abun.rich$Microhabitat_No)
+    #View(CryptoCS.Rzone.richness.glm.prediction)
+
+
+CryptoCS.Rzone.richness.glm.ggplot<- 
+  ggplot(data= CryptoCS.Rzone.richness.glm.prediction, 
+          aes(x= Reef_zone, y= richness_raw)) +
+  theme_cowplot(font_size = 10) + 
+  geom_point(aes(x= Reef_zone, 
+                  y= richness_raw, 
+                  colour= Reef_zone),
+                  position=position_jitterdodge(jitter.width = 0.3,
+                                                dodge.width = 1), 
+                 size= 4, 
+                 alpha= 0.2) +
+  geom_point(aes(x= Reef_zone, y= predicted_data.fit, 
+                 colour= Reef_zone), 
+                 position = pd,
+                 size= 4) +
+  scale_colour_manual(values = c("#5F0F40", "#FF9000"),
+                      labels =c("Sheltered", "Exposed"))  +
+  guides(color = guide_legend(title = "Reef zone", 
+                           override.aes = list(alpha = 1))) +
+  ylab("Richness") +
+  xlab("Reef zone") +
+  geom_errorbar(aes(ymin= predicted_data.fit-predicted_data.se.fit,
+                  ymax=predicted_data.fit+predicted_data.se.fit, 
+                   colour= Reef_zone), 
+              width = 0,
+              linewidth= 1, 
+              alpha=0.5, 
+              position= pd) +
+  theme(axis.text = element_text(size= 10), 
+       axis.title = element_text(face="bold", 
+                                 size = 10, 
+                                 vjust = -2),
+       legend.title = element_text(face= "bold")) +
+  scale_y_continuous(limits = c(0,15)) +
+   scale_x_discrete(limits= c("Back", "Front"),
+                   labels= c("Sheltered", "Exposed")) 
+
+CryptoCS.Rzone.richness.glm.ggplot
+
+CryptoCS.Rzone.richness.glm.ggplot.Nolabel<-CryptoCS.Rzone.richness.glm.ggplot  + 
+  theme(legend.position = "none")
+
+
+
+```
+```{r GLM.NB for abundance Reef zone}
+#abundance by Cryptostation by reef
+CryptoCS.Rzone.abundance.glm.nb<- glm.nb(abundance~Reef_zone,
+                                   data= Crypto.VER.abun.rich)
+summary(CryptoCS.Rzone.abundance.glm.nb)
+
+#Coefficients:
+     #              Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)          4.5914     0.1717   26.75   <2e-16 ***
+#Reef_zoneProtected   -0.1847    0.3078   -0.60    0.548
+
+
+CryptoCS.Rzone.abundance.glm.nb.prediction<- data.frame(predicted_data=predict(CryptoCS.Rzone.abundance.glm.nb, 
+           type = "response", se.fit = T),
+           abundance_raw= Crypto.VER.abun.rich$abundance,
+           Park_region = Crypto.VER.abun.rich$Park_region, 
+           Reef_name = Crypto.VER.abun.rich$Reef_name, 
+           Reef_zone = Crypto.VER.abun.rich$Reef_zone, 
+           Microhabitat_No = Crypto.VER.abun.rich$Microhabitat_No)
+    #View(CryptoCS.Rzone.abundance.glm.nb.prediction)
+
+#pd<- position_dodge(0.9)
+
+CryptoCS.Rzone.abundance.glm.nb.ggplot<- ggplot(
+  data= CryptoCS.Rzone.abundance.glm.nb.prediction, 
+          aes(x = Reef_zone, 
+              y = abundance_raw))+
+  theme_cowplot(font_size = 10) + 
+  geom_point(aes(x = Reef_zone, 
+                 y = abundance_raw, 
+                 colour= Reef_zone),
+              position = position_jitterdodge(jitter.width = 0.3,
+                                              dodge.width = 1), 
+              size= 4, alpha= 0.2) +
+  geom_point(aes(x = Reef_zone, 
+                 y = predicted_data.fit, 
+                 colour = Reef_zone), 
+             position = pd,
+             size= 4) +
+  scale_colour_manual(values = c("#5F0F40", "#FF9000"),
+                      labels =c("Sheltered", "Exposed")) +
+  guides(color = guide_legend(title = "Reef zone", 
+                              override.aes = list(alpha = 1))) +
+  ylab("Abundance") +
+  xlab("Reef zone") +
+  geom_errorbar(aes(ymin = predicted_data.fit - predicted_data.se.fit,
+                    ymax = predicted_data.fit + predicted_data.se.fit, 
+                    colour= Reef_zone), 
+              width = 0,
+              linewidth= 1, 
+              alpha=0.5, 
+              position= pd) +
+  theme(axis.text = element_text(size = 10), 
+        axis.title = element_text(face ="bold", 
+                                  size = 10, 
+                                  vjust = -2),
+        legend.title = element_text(face = "bold")) +
+  scale_y_continuous(limits = c(0,250)) +
+  scale_x_discrete(limits= c("Back", "Front"),
+                   labels= c("Sheltered", "Exposed"))
+
+CryptoCS.Rzone.abundance.glm.nb.ggplot
+
+CryptoCS.Rzone.abundance.glm.nb.ggplot.Nolabel<-CryptoCS.Rzone.abundance.glm.nb.ggplot  + 
+  theme(legend.position = "none")
+
+```
+```{r joining plots of richness and abundance}
+                                  #Richness
+rich.abun.models.plots<-ggarrange(CryptoCS.Pregion.richness.glm.ggplot.Nolabel +
+                                    rremove("xlab"), 
+                                  CryptoCS.Rzone.richness.glm.ggplot.Nolabel + 
+                                    rremove("xlab") +
+                                    rremove("ylab"),
+                                  #abundance
+                                  CryptoCS.Pregion.abundance.glm.nb.ggplot.Nolabel,                                              CryptoCS.Rzone.abundance.glm.nb.ggplot.Nolabel +
+                                    rremove("ylab"),
+                                    font.label = list(size = 10),
+                                    labels = c("A", "B", "C", "D"), 
+                                    align = c("hv"), 
+                                    ncol=2,
+                                    nrow = 2)
+rich.abun.models.plots
+
+ggsave("Fig.2.pdf", 
+       width = 6.8,  
+       units = "in", 
+       path = Ch1_plots_path)
+
+```
+
+
+```{r nMDS by Park region}
+
+Region.spread.dataframe <- Cryptos.VER.DataFrame %>% 
+  filter(Methodology == "CryptoStation") %>% 
+   mutate(Park_region = ifelse (Reef_name =="Blanquilla","North",
+                  ifelse (Reef_name =="Verde","North", 
+                  ifelse (Reef_name =="Anegada de Adentro","North",
+                  ifelse (Reef_name =="Enmedio","South",
+                  ifelse (Reef_name =="Cabezo","South","Pez")))))) %>% 
+  group_by(Park_region, Microhabitat_No, Fish_species) %>% 
+  summarise(Abundance= n()) %>% 
+  spread(Fish_species, Abundance, fill = 0)
+    #View(Region.spread.dataframe)
+
+Region.CS.raw<- Region.spread.dataframe %>% 
+  ungroup() %>% 
+  dplyr::select(-c(1:2))
+Region.CS.meta<-Region.spread.dataframe %>% 
+  ungroup() %>% 
+   dplyr::select(c(1:2))
+
+Region.CS.nMDS<- metaMDS(comm = Region.CS.raw, 
+                         k=2, 
+                         trymax = 100, 
+                         distance= "bray")
+Region.CS.nMDS
+Region.CS.nMDS$species
+summary(Region.CS.nMDS)
+
+Region.CS.nMDS.bd<- betadisper(vegdist(Region.CS.raw, 
+                                       distance ="bray"), 
+                               Region.CS.meta$Park_region)
+Region.CS.nMDS.bd
+anova(Region.CS.nMDS.bd)
+
+#Response: Distances
+  #        Df   Sum Sq  Mean Sq F value Pr(>F)
+#Groups     1 0.042577 0.042577   3.052 0.1025
+#Residuals 14 0.195305 0.013950   
+ #Sq: a statistical measure that calculates the total deviation of data points from their mean by squaring the differences and adding them together
+
+
+Region.CS.nMDS.adonis<- adonis2(Region.CS.raw ~ Region.CS.meta $ Park_region,
+                                distance = "bray")
+#Results from adonis
+ #       Df SumOfSqs      R2      F Pr(>F)
+#Model     1   0.3209 0.09889 1.5365  0.169
+#Residual 14   2.9242 0.90111              
+#Total    15   3.2451 1.00000 
+
+TukeyHSD(Region.CS.nMDS.bd)
+summary(Region.CS.nMDS.adonis)
+
+
+Region.CS.scores <- as.data.frame(Region.CS.nMDS$points) %>% 
+  bind_cols(Region.CS.meta)
+   #View(Region.CS.scores)
+
+Region.CS.hulls <- Region.CS.scores %>% 
+  group_by(Park_region) %>% 
+  slice(chull(MDS1, MDS2))
+    #View(Region.CS.hulls)
+
+Region.CS.species <- as.data.frame(Region.CS.nMDS$species) %>% 
+  mutate(MDS1.f= abs(MDS1)) %>% 
+  mutate(MDS2.f= abs(MDS2)) %>% 
+  filter(MDS1.f > 0.2) %>% 
+  filter(MDS2.f > 0.2) %>% 
+  mutate(Fish_species = row.names(.))
+    #View(Region.CS.species)
+
+
+Region.CS.nMDS.plot<- ggplot() + theme_cowplot() +
+  geom_polygon(data= Region.CS.hulls, 
+                    aes(x = MDS1, 
+                        y = MDS2,
+                        lty = Park_region,
+                        fill = Park_region,
+                        colour = Park_region,),
+                        alpha = 0.0,
+                        size =1.5) +
+  geom_point(data = Region.CS.scores, 
+             aes(x = MDS1, 
+                 y = MDS2, 
+                 colour = Park_region), 
+                 size = 9,
+                 alpha= 0.7) +
+  geom_text(data= Region.CS.scores,
+               aes(x = MDS1, 
+                   y = MDS2),
+                  label = Region.CS.scores$Microhabitat_No,
+                  colour = "white",
+                  fontface = "bold",
+                  size = 2)+
+  geom_segment(data = Region.CS.species, 
+                   aes(x = 0, 
+                       xend = MDS1/1.8,
+                       y = 0, 
+                       yend = MDS2/1.8), 
+                       lwd = 0.3, 
+                       alpha= 0.1,
+                      color = "black") +
+  geom_text_repel(data = Region.CS.species, 
+                  aes( x = MDS1/1.7, 
+                       y =MDS2/1.7, 
+                       label = Fish_species),  
+                       size = 3,
+                       fontface ="italic",
+                       colour = "black", 
+                       force = 3, 
+                       segment.alpha = 0.8, 
+                       segment.size = 0.0,
+                       force_pull = 2,
+                       max.overlaps = 30) +
+  theme(axis.text =  element_text(size= 10), 
+        axis.title = element_text(face="bold",
+                                  size = 10, 
+                                  vjust = -2),
+        legend.position = c(0.75, 0.92),
+        legend.title = element_text(face = "bold", 
+                                    size = 10),
+        legend.text = element_text(size= 10)) +
+  scale_colour_manual(values = c("#1C6E8C", "black"))+
+  scale_fill_manual(values = c("#1C6E8C", "black"))+
+  guides(lty = guide_legend(title = "Park region"),
+         colour = guide_legend(title= "Park region"),
+         fill = guide_legend(title = "Park region")) 
+   
+  
+Region.CS.nMDS.plot
+
+
+```
+```{r nMDS by Reef zone}
+
+ReefZone.spread.dataframe <- Cryptos.VER.DataFrame %>% 
+  filter(Methodology == "CryptoStation") %>% 
+   mutate(Park_region = ifelse (Reef_name =="Blanquilla","North",
+                  ifelse (Reef_name =="Verde","North", 
+                  ifelse (Reef_name =="Anegada de Adentro","North",
+                  ifelse (Reef_name =="Enmedio","South",
+                  ifelse (Reef_name =="Cabezo","South","Pez")))))) %>% 
+  group_by(Reef_zone, Microhabitat_No, Fish_species) %>% 
+  summarise(Abundance= n()) %>% 
+  spread(Fish_species, Abundance, fill = 0)
+    #View(ReefZone.spread.dataframe)
+
+ReefZone.CS.raw<- ReefZone.spread.dataframe %>% 
+  ungroup() %>% 
+  dplyr::select(-c(1:2))
+ReefZone.CS.raw2<- ReefZone.spread.dataframe %>% 
+  ungroup() %>% 
+  dplyr::select(-c(1:2)) %>% 
+  avgdist(sample = 20)
+View(ReefZone.CS.raw2)
+str(ReefZone.CS.raw2)
+
+ReefZone.CS.meta<-ReefZone.spread.dataframe %>% 
+  ungroup() %>% 
+   dplyr::select(c(1:2))
+
+ReefZone.CS.nMDS<- metaMDS(comm = ReefZone.CS.raw, 
+                           k=2, 
+                           trymax = 100, 
+                           distance= "bray")
+ReefZone.CS.nMDS$species
+summary(ReefZone.CS.nMDS)
+
+
+#allows to see if the data variation between groups
+ReefZone.CS.nMDS.bd<- betadisper(vegdist(ReefZone.CS.raw, 
+                                         distance ="bray"),
+                                 ReefZone.CS.meta$Reef_zone)
+summary(ReefZone.CS.nMDS.bd)#to know the distances from the median
+anova(ReefZone.CS.nMDS.bd) # we want a p value that is high
+#Response: Distances
+ #         Df  Sum Sq   Mean Sq F value Pr(>F)
+#Groups     1 0.00143 0.0014318  0.0613 0.8081
+#Residuals 14 0.32715 0.0233676
+ #Sq: a statistical measure that calculates the total deviation of data points from their mean by squaring the differences and adding them together
+
+#After a multivariate test, it is often desired to know more about the specific groups to find out if they are significantly different or similar. This step after analysis is referred to as ‘post-hoc analysis’ and is a major step in hypothesis testing.
+TukeyHSD(ReefZone.CS.nMDS.bd)
+
+#ADONA or Permanova
+ReefZone.CS.nMDS.adonis<- adonis2(ReefZone.CS.raw2 ~
+                                  ReefZone.CS.meta$Reef_zone,
+                                  strata = ReefZone.CS.meta$Microhabitat_No,
+                                  distance = "bray")
+ReefZone.CS.nMDS.adonis
+str(ReefZone.CS.nMDS.adonis)
+#$ Pr(>F)  : num  0.287 NA NA
+
+ReefZoneCS.scores<- as.data.frame(ReefZone.CS.nMDS$points) %>% 
+  bind_cols(ReefZone.CS.meta)
+    #View(ReefZoneCS.scores)
+
+ReefZone.CS.hulls<- ReefZoneCS.scores %>% 
+  group_by(Reef_zone) %>% 
+  slice(chull(MDS1, MDS2))
+    #View(ReefZone.CS.hulls) #this are the extremes
+
+ReefZone.CS.species<-as.data.frame(ReefZone.CS.nMDS$species) %>% 
+  mutate(MDS1.f= abs(MDS1)) %>% 
+  mutate(MDS2.f= abs(MDS2)) %>% 
+  filter(MDS1.f > 0.2) %>% 
+  filter(MDS2.f > 0.2) %>% 
+  mutate(Fish_species = row.names(.))
+    #View(ReefZone.CS.species)
+
+ReefZone.CS.nMDS.plot <- 
+  ggplot() + 
+  theme_cowplot() +
+  geom_polygon(data = ReefZone.CS.hulls, 
+               aes(x = MDS1, 
+                   y = MDS2,  
+                   fill = Reef_zone),
+                   alpha = 0.3, 
+                   size = 1.5) +
+  geom_point(data = ReefZoneCS.scores, 
+             aes(x = MDS1,
+                 y = MDS2, 
+                 colour = Reef_zone), 
+             size = 9,
+             alpha = 0.7) +
+  geom_text(data = ReefZoneCS.scores,
+               aes(x = MDS1, 
+                   y = MDS2),
+            label = ReefZoneCS.scores$Microhabitat_No,
+            colour = "white",
+            fontface = "bold",
+            size = 2) +
+  geom_segment(data = ReefZone.CS.species, 
+               aes(x = 0,
+                   xend = MDS1/1.6,
+                   y = 0, 
+                   yend = MDS2/1.6), 
+               linewidth = 0.3, 
+               alpha = 0.1, 
+               color = "black") +
+  geom_text_repel(data = ReefZone.CS.species, 
+                  aes( x = MDS1/1.5, 
+                       y = MDS2/1.5, 
+                       label= Fish_species),  
+                  size = 3,
+                  fontface ="italic",
+                  colour = "black", 
+                  force = 3, 
+                  segment.alpha = 0.8, 
+                  segment.size = 0.0,
+                  force_pull = 2,
+                  max.overlaps = 30) +
+  theme(axis.text =  element_text(size= 10), 
+        axis.title = element_text(face="bold", 
+                                  size = 10, 
+                                  vjust = -2),
+        legend.position = c(0.70,0.92),
+        legend.title = element_text(face = "bold", 
+                                    size= 10),
+        legend.text = element_text(size= 8)) +
+  scale_fill_manual(name= "Reef zone",
+                    values= c("#5F0F40", "#FF9000"),
+                    labels=c( "Sheltered", "Exposed")) +
+
+  scale_colour_manual(name= "Reef zone",
+                    values= c("#5F0F40", "#FF9000"),
+                    labels=c("Sheltered", "Exposed")) 
+ReefZone.CS.nMDS.plot
+
+
+```
+```{r nMDS panel}
+
+all.nMDS<- ggarrange(Region.CS.nMDS.plot,
+                     ReefZone.CS.nMDS.plot,
+                     labels = c("A", "B"), 
+                     ncol=2, 
+                     font.label = list(size = 10),
+                     align = "v")
+
+all.nMDS
+
+ggsave("Fig3.pdf", 
+       width = 7.5,
+       height = 5,
+       units = "in", 
+       path = Ch1_plots_path)
+
+```
+
+
+```{r VER GLM Correlation occurence and abundance, warning=FALSE}
+
+Crypto.abun.ocu.CS<- Cryptos.VER.DataFrame %>% 
+  filter(Methodology== "CryptoStation") %>% 
+  group_by(Microhabitat_No, Fish_species) %>% 
+  summarise(Abundance= n()) %>% 
+  mutate(Ocurrence= 1) %>% 
+  ungroup() %>% 
+  group_by(Fish_species) %>% 
+  summarise(Abundance= sum(Abundance), 
+            Ocurrence= sum(Ocurrence)) %>% 
+  mutate(Log.Abundance = log(Abundance)) %>% 
+  mutate(Status = ifelse(Fish_species == "Elacatinus jarocho", "endemic",
+                  ifelse(Fish_species == "Tigrigobius redimiculus", "endemic", "native")))
+
+    #View(Crypto.abun.ocu.CS)
+
+natives<- Crypto.abun.ocu.CS %>% 
+  filter(Status == "native")
+
+endemics<- Crypto.abun.ocu.CS %>% 
+  filter(Status == "endemic")
+
+median(Crypto.abun.ocu.CS$Abundance)
+median(Crypto.abun.ocu.CS$Ocurrence)
+
+Crypto.abun.ocu.CS.rare<- Crypto.abun.ocu.CS %>% 
+  filter(Abundance < 18 & Ocurrence < 6)
+    #View(Crypto.abun.ocu.CS.rare)
+
+
+
+#model of the correlation between ocurrence and abundance
+Ocu.Abun.glm<- glm(Ocurrence ~ Log.Abundance, 
+                   data=Crypto.abun.ocu.CS,
+                   family = "poisson")
+summary(Ocu.Abun.glm)
+
+# CCoefficients:
+         #  Estimate Std. Error z value Pr(>|z|)    
+#(Intercept)    0.6198    0.1894   3.273 0.00107 ** 
+#Log.Abundance  0.3799    0.0460   8.258 < 2e-16 ***
+
+
+Predict.Ocu.Abun.glm <- data.frame(
+      predicted_data = predict.glm(Ocu.Abun.glm, 
+      type = "response",
+      se.fit = T), 
+  Abundance_raw = Crypto.abun.ocu.CS$Abundance, 
+  Ocurrence_raw = Crypto.abun.ocu.CS$Ocurrence)
+    #View(Predict.Ocu.Abun.glm)
+
+
+Abun.Ocur.plot <- ggplot() +
+  geom_point(data  = natives, 
+             aes(x = Abundance, 
+                 y = Ocurrence),
+             colour = "black", 
+             size = 1, 
+             alpha = 0.3) + 
+  geom_point(data = endemics, 
+             aes(x = Abundance, 
+                 y = Ocurrence),
+             colour = "black", 
+             size = 1)+
+  
+  scale_x_log10() + 
+  theme_classic() + 
+  geom_line(data = Predict.Ocu.Abun.glm, 
+            aes(y = predicted_data.fit, 
+                x = Abundance_raw),
+          colour="#D81159", 
+          linewidth = 1) +
+  geom_ribbon(data= Predict.Ocu.Abun.glm,  
+              aes(x = Abundance_raw,
+                    ymin = predicted_data.fit - predicted_data.se.fit,
+                    ymax = predicted_data.fit + predicted_data.se.fit), 
+              fill= "#D81159", 
+              alpha= 0.2) +
+  geom_text_repel(data = natives, 
+                  aes(x = Abundance, 
+                      y = Ocurrence,
+                      group = Status,
+                      label = Fish_species),
+                  size = 1.5, 
+                  force = 8, 
+                  segment.alpha = 0.1, 
+                  segment.size = 0.1, 
+                  colour = "black", 
+                  alpha= 0.8,
+                  fontface= "italic",
+                  max.overlaps = 20) +
+  geom_text_repel(data = endemics, 
+                  aes(x = Abundance,
+                      y = Ocurrence,
+                      label = Fish_species),
+                  size = 1.5, 
+                  force = 15, 
+                  segment.alpha = 0.1, 
+                  segment.size = 0.1, 
+                  fontface = "bold.italic",
+                  colour = "black")+
+  theme(axis.text = element_text(size= 10), 
+        axis.title = element_text(face="bold", 
+                                  size = 10, 
+                                  vjust = -2)) +
+  xlab(expression(paste(bold("Abundance"), bold(~(log["10"]) )))) +
+  ylab("Occurrence") +
+  scale_y_continuous(limits = c(0,20),
+                     breaks = seq(0,20, by=5)) 
+  
+
+Abun.Ocur.plot
+
+```
+```{r VER Crypto range analysis in CryptoStations}
+
+Cryptos.CSabundance.sp<-Cryptos.VER.DataFrame %>% 
+  filter(Methodology == "CryptoStation") %>% 
+  group_by(Fish_species) %>% 
+  summarize(Abundance= n()) %>% 
+  arrange(-Abundance) %>% 
+  mutate(No_sp= row_number()) %>% 
+   mutate(Fish_species2= Fish_species) %>% 
+  separate(Fish_species, c("Genus", "Epiteto", "Epiteto2")) %>% 
+  mutate(Code= substr(Genus, 1L,4L),
+         Codepit= substr(Epiteto,1L,3L )) %>%  
+  unite(Code_sp, c("Code", "Codepit")) %>%  
+  unite(Fish_Species, c("Genus", "Epiteto", "Epiteto2")) %>% 
+  mutate(Status = ifelse(Fish_species2 == "Elacatinus jarocho", "endemic",
+                  ifelse(Fish_species2 == "Tigrigobius redimiculus", "endemic", "native")))
+
+    #View(Cryptos.CSabundance.sp)
+
+endemics_abun<- Cryptos.CSabundance.sp %>% 
+  filter(Status == "endemic")
+natives_abun<- Cryptos.CSabundance.sp %>% 
+  filter(Status == "native")
+
+
+
+Cryptos.range.ggplot<- ggplot(Cryptos.CSabundance.sp, 
+                              aes(x= No_sp, 
+                                  y= Abundance, 
+                                  group=1, 
+                                  label= Fish_species2)) + 
+  geom_line(colour="#49a078", 
+            linewidth= 1,  
+            alpha= 0.7) + 
+  geom_point(colour="#147361", 
+             size = 2, 
+             alpha = 1) + 
+  theme_classic() + 
+  geom_text_repel(data = natives_abun,
+                  size = 2, 
+                  force_pull = 1,
+                  point.size = 1,
+                  nudge_y = 60,
+                  segment.alpha = 1, 
+                  segment.size = 0.5,
+                  segment.color = NA,
+                  nudge_x = -.001,
+                  angle = 90,
+                  colour = "black", 
+                  alpha= 0.8,
+                  fontface = "italic") + 
+  geom_text_repel(data = endemics_abun, aes(x= No_sp, 
+                                          y= Abundance,
+                                          label= Fish_species2),
+                  size = 2, 
+                  force_pull = 1,
+                  point.size = 1,
+                  nudge_y = 70,
+                  segment.alpha= 1, 
+                  segment.size= 0.5,
+                  segment.color= NA,
+                  nudge_x = -0.01,
+                  angle = 90,
+                  colour= "black",
+                  fontface= "bold.italic") + 
+  
+  xlab("Rank") + 
+  theme(axis.text.x = element_blank(), 
+        axis.ticks.x = element_blank(),
+        axis.title = element_text(face="bold", 
+                                 size = 10, 
+                                 vjust = -2)) +
+  scale_y_continuous(limits = c(0,800),
+                     breaks = seq(0,800, by=200))
+
+Cryptos.range.ggplot
+
+
+```
+```{r Abundance and Occurence panel}
+
+Abun.Ocur.panel<-ggarrange(Abun.Ocur.plot, 
+                           Cryptos.range.ggplot, 
+                           font.label = list(size = 10),
+                           labels = c("A", "B"),
+                           nrow = 2)
+
+Abun.Ocur.panel
+
+ggsave("Fig4.pdf", 
+       width = 5.2,
+       units = "in", path = Ch1_plots_path)
+
+```
+
+
+
+#### Microhabitat analysis ### 
+
+#### Microhabitat analysis ### 
+
+```{r Joining the Fish and Microh data frames}
+
+##Metadata of sites and cryptostations
+Sites.CS.Meta<- Cryptos.VER.DataFrame %>% 
+  filter(Methodology == "CryptoStation") %>% 
+  group_by(Site_name) %>% 
+  distinct(Microhabitat_No)
+    #View(Sites.CS.Meta)
+    #View(Cryptos.VER.DataFrame)
+
+
+##### Joining and cleaning the data  ####
+Join.microh<- Microh_DataFrame %>% 
+  dplyr::select(Country, Reef_name, Reef_zone, Site_name, Methodology,  
+                 Microhabitat_label, `Group_Classification(ImageID)`, 
+                 Scientific_name, Fish_catched) %>% 
+  filter(Country == "Mexico")
+
+
+Join.microh %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  distinct() %>% 
+  summarise(Tfish= sum(Fish_catched),
+            n= n())
+
+  
+    #View(Join.microh)
+    #View(Fish_DataFrame)
+    #View(Microh_DataFrame)
+
+#Data frame for the cryptos and Microhabitats in Veracruz
+Microh_fish_dataframe<- Cryptos.VER.DataFrame %>%
+    dplyr::filter(Methodology == "Roving Quadrant") %>%
+    dplyr::select(-Note, -STRIwebsite, -Box_storage, Group_humid_weight, -N, -W, -Date, -Microhabitat_No) %>% 
+    dplyr::full_join(Join.microh, 
+                     by = c("Microhabitat_label",
+                            "Reef_name", 
+                            "Reef_zone", 
+                            "Country", 
+                            "Site_name"))  %>% 
+    dplyr::select(Country, 
+                Reef_name, 
+                Reef_zone, 
+                Site_name,
+                `Depth_(m)`, 
+                Microhabitat_label,
+                Fish_tag_ID, 
+                Family, 
+                Genus, 
+                Fish_species,
+                `Group_Classification(ImageID)`, 
+                Scientific_name, 
+                Fish_catched) %>% 
+         mutate(Park_region = ifelse (Reef_name =="Blanquilla","North",
+                  ifelse (Reef_name =="Verde","North", 
+                  ifelse (Reef_name =="Anegada de Adentro","North",
+                  ifelse (Reef_name =="Enmedio","South",
+                  ifelse (Reef_name =="Cabezo","South","Pez")))))) %>% 
+  mutate(Fish_species = case_when(
+    Fish_species == "Enneanectes cf. altivelis" ~ "Enneanectes altivelis",
+    Fish_species == "Hypleurochilus sp." ~ "Hypleurochilus bermudensis",
+    Fish_species == "Lythrypnus cf. nesiotes" ~ "Lythrypnus nesiotes", 
+    TRUE ~ Fish_species ))
+  
+    #View(Microh_fish_dataframe)
+    View(Cryptos.VER.DataFrame)
+
+Mh_richness<-Microh_fish_dataframe %>% 
+  drop_na(Fish_species) %>% 
+  distinct(Fish_species) 
+    #View(Mh_richness)
+
+
+Microh_fish_dataframe %>% 
+   drop_na(`Group_Classification(ImageID)`, Fish_species, Fish_tag_ID) %>% 
+  distinct(Microhabitat_label, Fish_catched) %>% 
+  summarise(t=sum(Fish_catched))
+
+
+```
+
+In Microhabitats
+```{r VER Microhabitats sampled}
+
+Mh_sampled<-Microh_fish_dataframe %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  summarise(total_mh= n()) %>% 
+  na.omit()
+#total of 87.7% of fishes in sampled microhabitats
+    #View(Mh_sampled)
+
+
+Mh_sampled_reef<-Microh_fish_dataframe %>% 
+  group_by(Reef_name) %>% 
+  summarise(total_mh= n()) %>% 
+  na.omit()
+
+    #View(Mh_sampled_reef)
+```
+
+```{r GLM Richness in Microhabitats}
+
+###### Crypto richness in Microhabitats
+
+### The number of species per broad microhabitat
+Richness.by.microhabitat.Ver<-Microh_fish_dataframe %>% 
+  dplyr::filter(!`Group_Classification(ImageID)` == "Photo_not_available") %>% 
+  drop_na(`Group_Classification(ImageID)`, Fish_species) %>%   
+  group_by(`Group_Classification(ImageID)`) %>% 
+  dplyr::summarise(No_sp=n_distinct(Fish_species))
+    #View(Richness.by.microhabitat.Ver) #Number of species per microhabitat in Veracruz
+
+Richness.Microh.cryptos.Ver <-Microh_fish_dataframe %>%  
+  dplyr::filter(!`Group_Classification(ImageID)` == "Photo_not_available") %>% 
+  drop_na(`Group_Classification(ImageID)`) %>% 
+  replace_na(list(Fish_species ="no_fish")) %>% 
+  group_by(`Group_Classification(ImageID)`, Microhabitat_label) %>% 
+  mutate(Richnes.by.Mh =  n_distinct(Fish_species)) %>% 
+  mutate(Richnes.by.Microh = case_when(Fish_species == "no_fish" ~ 0, TRUE ~ Richnes.by.Mh)) %>% 
+   dplyr::select(-Richnes.by.Mh) 
+    #View(Richness.Microh.cryptos.Ver)
+
+#obtaining the median and SD or SE
+
+Median.richness.microh.cryptos <- Richness.Microh.cryptos.Ver %>% 
+  group_by(Microhabitat_label, 
+           `Group_Classification(ImageID)`) %>% 
+  distinct(Microhabitat_label, 
+           `Group_Classification(ImageID)`, 
+           Richnes.by.Microh) %>% 
+  ungroup() %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  summarise(Median_cryptos_Mh = median(Richnes.by.Microh),
+            SD = sd(Richnes.by.Microh))
+    #View(Median.richness.microh.cryptos)
+
+
+Richness.Microh.cryptos.Ver.glm <- glm(Richnes.by.Microh ~
+                                         `Group_Classification(ImageID)`,
+                                   data= Richness.Microh.cryptos.Ver,
+                                   family= "poisson")
+summary(Richness.Microh.cryptos.Ver.glm)
+
+
+Richness.Mh.glm.prediction <- data.frame(predicted_data=predict(Richness.Microh.cryptos.Ver.glm, 
+           type = "response", se.fit = T),
+           Richness= Richness.Microh.cryptos.Ver$Richnes.by.Microh,
+           Microhabitat = Richness.Microh.cryptos.Ver$`Group_Classification(ImageID)`) %>% 
+   mutate(Microhabitat = recode(Microhabitat,
+                               "Death coral" = "Dead coral"))
+    #View(Richness.Mh.glm.prediction)
+
+Richness.Mh.glm.prediction.frame<- Richness.Mh.glm.prediction %>% 
+  distinct( Microhabitat,predicted_data.fit, predicted_data.se.fit) %>% 
+   mutate(Microhabitat = recode(Microhabitat,
+                               "Death coral" = "Dead coral"))
+    #View(Richness.Mh.glm.prediction.frame)
+
+
+#####ggplot Fig5 ####
+Richness.Mh.glm.ggplot <- 
+  #Model data
+  ggplot(data = Richness.Mh.glm.prediction, 
+          aes(x = reorder(Microhabitat,-Richness), 
+              y = Richness)) +
+  #Jitter points raw data
+  geom_point(aes(x= reorder(Microhabitat,-Richness), 
+                 y= Richness, 
+                 colour = Microhabitat),
+             size  = 3, 
+             alpha = 0.03,
+             position = position_jitterdodge(jitter.width  = 0.3,
+                                             jitter.height = 0.1,
+                                             dodge.width   = 1)) +
+  #Data distribution
+  stat_pointinterval(aes(x = Microhabitat, 
+                         y = Richness, 
+                         colour = Microhabitat), 
+                     point_size = 2,
+                     point_interval = "median_qi",
+                     position = position_dodge(width = -1, 
+                                               preserve = "single")) +
+  #Prediction point
+  geom_point(data= Richness.Mh.glm.prediction,
+             aes(x= Microhabitat, 
+                 y= predicted_data.fit, 
+                 fill= Microhabitat),
+                              shape = 23,
+                              size = 4,
+                              alpha = 1,
+                              colour = "white",
+                              stroke = 0.5) +
+  #Data distribution polygon
+   stat_slab(aes(x = Microhabitat, 
+                y = Richness, 
+                fill= Microhabitat), 
+            alpha = 0.3,
+            justification = -.5, 
+            scale = 0.5,
+            geom = "slab",
+            adjust = 4,
+            trim = F,
+            density = "unbounded")  +
+  # Aesthetics
+  theme_cowplot(font_size = 10) +
+  ylab("Richness") +
+  theme(axis.text  = element_text(size= 8), 
+        axis.title = element_text(face="bold", 
+            size = 10, 
+            vjust = -2),
+        axis.title.x = element_blank()) +
+  scale_color_manual(values = ManualColours) +
+  scale_fill_manual (values = ManualColours) +
+  scale_y_continuous(limits = c(0,6),
+                     breaks = seq(0,6, by=1)) +
+  scale_x_discrete(labels = label_wrap(10))
+  
+ 
+Richness.Mh.glm.ggplot
+
+#removing label
+Richness.Mh.glm.ggplot.Nlabel<- Richness.Mh.glm.ggplot +
+  theme(legend.position = "none",
+        axis.title.x = element_blank())
+Richness.Mh.glm.ggplot.Nlabel
+
+#add a halfeye 
+# for our next meeting, plot all the raw data with no statistical test. 
+  
+
+
+
+```
+```{r ZIP of crypto abundance in microhabitats}
+
+
+#Crypto abundance in each Microhabitat sampling
+Microh.cryptos.catched.Ver<- Microh_fish_dataframe %>%
+  mutate(Row = ifelse(Fish_catched == 0, 0, 
+               ifelse(Fish_catched >= 0, 1,"pez"))) %>% 
+  group_by(`Group_Classification(ImageID)`, Microhabitat_label) %>%
+  summarise(Crypto_abun= sum(Row)) %>% 
+  dplyr::filter(!`Group_Classification(ImageID)` == "Photo_not_available") %>% 
+  drop_na(`Group_Classification(ImageID)`)
+    #View(Microh.cryptos.catched.Ver)
+
+sum(Microh.cryptos.catched.Ver$Crypto_abun)
+
+### To obtain the median abundance of cryptobenthic reef fishes
+  Microh.cryptos.catched.Ver %>% 
+    group_by(`Group_Classification(ImageID)`) %>% 
+    summarise(x = sum(Crypto_abun),
+              median = median(Crypto_abun),
+              mean = mean(Crypto_abun),
+              SD = sd(Crypto_abun))
+
+mean(Microh.cryptos.catched.Ver$Crypto_abun)
+var(Microh.cryptos.catched.Ver$Crypto_abun)
+
+Crypto.Mh.zip <- zeroinfl(as.numeric(Crypto_abun) ~ `Group_Classification(ImageID)`, 
+                          data=Microh.cryptos.catched.Ver, 
+                          dist= "poisson")
+summary(Crypto.Mh.zip)
+
+
+Crypto.Mh.zip.prediction <- data.frame(
+           predicted_data = predict(Crypto.Mh.zip, 
+           type = "response", 
+           se.fit = T),
+           abundance_raw = Microh.cryptos.catched.Ver$Crypto_abun,
+           Microhabitat = Microh.cryptos.catched.Ver$`Group_Classification(ImageID)`) %>% 
+   mutate(Microhabitat = recode(Microhabitat,
+                               "Death coral" = "Dead coral"))
+    #View(Crypto.Mh.zip.prediction)
+
+Crypto.Mh.zip.prediction.frame <- Crypto.Mh.zip.prediction %>% 
+  distinct( Microhabitat, predicted_data) %>% 
+  mutate(Microhabitat = recode(Microhabitat,
+                               "Death coral" = "Dead coral"))
+    #View(Crypto.Mh.zip.prediction.frame)
+
+#How to obtain the SE for each microhabitat?
+#with data distribution ploted as half eyes.
+
+#### ggplot Fig 5B ####
+#Model data
+ Crypto.abun.Mh.zip.ggplot<- ggplot(data = Crypto.Mh.zip.prediction, 
+          aes(x = reorder(Microhabitat,-abundance_raw), 
+              y = abundance_raw)) +
+  #Jitter points raw data
+  geom_point(aes(x= reorder(Microhabitat,
+                            -abundance_raw), 
+                 y= abundance_raw, 
+                 colour= Microhabitat),
+            position=position_jitterdodge(jitter.width = 0.3,
+                                          dodge.width = 1,
+                                          jitter.height = 0.1), 
+            size = 3, 
+            alpha = 0.05) +
+  #Data distribution
+  stat_pointinterval(aes(x = Microhabitat, 
+                         y = abundance_raw, 
+                         colour = Microhabitat), 
+                    point_size = 2, 
+                    point_interval = "median_qi",
+                    position = position_dodge(width = -1, 
+                                              preserve = "single")) +
+  #Prediction point
+  geom_point(data = Crypto.Mh.zip.prediction,
+             aes(x = Microhabitat, 
+                 y = predicted_data, 
+                 fill = Microhabitat),
+                              shape =23,
+                              size= 4,
+                              alpha = 1,
+                              colour = "white",
+                              stroke = 0.5) +
+  #Data ditribution polygon
+  stat_slab(aes(x = Microhabitat, 
+                y = abundance_raw, 
+                fill= Microhabitat), 
+                              alpha= 0.3,
+                              justification = -.5, 
+                              scale= 0.5, 
+                              adjust= 10, 
+                              trim = F,
+            density = "unbounded") +
+   #Aesthetics
+  theme_cowplot(font_size = 10) + 
+  theme(axis.text = element_text(size= 8),
+        axis.title.x = element_blank(),
+        axis.title= element_text(face="bold", 
+                              size = 10, 
+                              vjust = -2)) +
+  scale_color_manual(values = ManualColours) +
+  scale_fill_manual (values = ManualColours)+
+  guides(color = guide_legend(title = "Microhabitat", 
+                              override.aes = list(alpha = 1))) +
+  scale_y_continuous(breaks = seq(0,20,by= 2),
+                     limits = c(0,20)) +
+  scale_x_discrete(labels = label_wrap(10)) +
+  ylab("Abundance") 
+
+
+Crypto.abun.Mh.zip.ggplot
+
+#removing label
+Crypto.abun.Mh.zip.ggplot.Nlabel<- Crypto.abun.Mh.zip.ggplot +
+  theme(legend.position = "none")
+Crypto.abun.Mh.zip.ggplot.Nlabel
+```
+```{r GLM microhabitats richness and abundance panel}
+grobs <- ggplotGrob(Richness.Mh.glm.ggplot)$grobs
+legend <- grobs[[which(sapply(grobs, function(x) x$name) == "guide-box")]]
+labels <- c("A", "B")
+
+
+GLM.Fish.Microh<- plot_grid(Richness.Mh.glm.ggplot.Nlabel,
+                     Crypto.abun.Mh.zip.ggplot.Nlabel, 
+                     nrow=2, 
+                     align = "v", 
+                     labels = labels, 
+                     label_size = 10, 
+                     vjust = 1.5, 
+                     hjust = -1)
+
+GLM.Fish.Microh
+
+ggsave("Fig5.pdf", 
+       width = 7.5,
+       units = "in", path = Ch1_plots_path)
+
+```
+
+
+
+#### CORALNET covers ###
+```{r CORALNET_complete dataframe}
+
+CORALNET_complete<- CORALNET_metadata %>% 
+ dplyr:: select(Name, Site_name, Transect) %>% 
+  rename("Image name" = Name) %>% 
+  full_join(CORALNET_percent_covers, by = join_by(`Image name`)) %>% 
+  dplyr::select(-`Image ID`, -Points, -`Annotation status`) %>% 
+  na.omit() %>% 
+  pivot_longer(cols= 4:38, 
+               names_to = "CORALNET_ID", 
+               values_to = "CORALNET_pcovers") %>% 
+
+mutate(`Group_Classification(ImageID)` = case_when(
+    CORALNET_ID %in% c("AcrCerv", "CoNat",     "AgLam",
+                       "AgTen",   "MontaCav",  "OrbAnn",
+                       "OrbFav",  "PorAstr",   "PorPor", 
+                       "SidSid",  "PseuStrig", "AcrPalm", 
+                       "DiplLab", "SidRad")   ~ "Scleractinian coral", 
+    
+    CORALNET_ID %in% c("SabeMag", 
+                       "EriCarb", 
+                       "Millepora", 
+                       "Urchins")   ~ "No_Microh",
+    
+    CORALNET_ID %in% c("AplyCau",    "AplyFist",   "AplyFul",
+                       "AxiMor",     "EncrusSpon", "AgConTub",
+                       "AgeWied",    "DesAn",      "SpongeClat", 
+                       "AioloCra",   "AmphComp",   "Amp_spp", 
+                       "AplysiLac",  "CallysPli",  "CallyVa", 
+                       "ClioDelix",  "EctyoFerx",  "Icampa", 
+                       "IotroBiro",  "IrciStrob",  "MycaLae",
+                       "Neopetrosi", "NiphDigi",   "PlakAng", 
+                       "S aurea", "Verongula",     "Xestospong")  ~  "Sponge",
+    
+    CORALNET_ID %in% c("CaveMed",
+                       "CaveSma")~  "Cave",
+    
+    CORALNET_ID %in% c("Rubble",
+                       "SandRub") ~ "Rubble",  
+    
+    CORALNET_ID %in% c("sed_fine",
+                       "Sand") ~ "Sand",
+    
+    CORALNET_ID %in% c("Halimeda",   
+                       "Galaxaura", 
+                       "EncrustAlg", 
+                       "Caulerpa",  
+                       "Dictyota", 
+                       "HaliOpu", 
+                       "JaniaPedun", 
+                       "Padina",    
+                       "TurbTri") ~ "Algae",
+    CORALNET_ID == "Turf" ~ "Turf",
+    
+    CORALNET_ID %in% c("AntiAme",  
+                       "Eucinea sp", 
+                       "GorgoVen", 
+                       "PlexaNut", 
+                       "PteAnc") ~  "Gorgonia",
+    
+    CORALNET_ID == "Wco" ~ "White coral",
+    CORALNET_ID == "Pavement" ~  "Death coral",
+    CORALNET_ID %in% c("ThalTes", "SyrFil") ~ "Sea grass",
+    CORALNET_ID == "PalyCarib" ~ "Zoanthid",
+    
+    TRUE ~ "Pez")) %>% 
+  
+ mutate(Reef_name = case_when(
+    Site_name %in% c("BLNQ001",       
+                     "BLNQ002", 
+                     "BLNQ003") ~ "Blanquilla",
+    Site_name %in% c("VRD-Cated",     
+                     "VRD-Faro") ~ "Verde",
+    Site_name %in% c("Colas_de_gato", 
+                     "Doce_metros", 
+                     "El_ancla") ~ "Anegada de Adentro",
+    Site_name %in% c("Valiente",      
+                     "Entrada_Valiente", 
+                     "Valiente_pastos", 
+                     "Ensenada") ~ "Cabezo", 
+    Site_name %in% c("ENM1", 
+                     "ENM-Expuesto1", 
+                     "ENM-Gorgonias", 
+                     "ENM-Expuesto2") ~ "Enmedio",
+    TRUE ~ "Pez")) %>% 
+  
+   mutate(Park_region = ifelse (Reef_name =="Blanquilla","North",
+                  ifelse (Reef_name =="Verde","North", 
+                  ifelse (Reef_name =="Anegada de Adentro","North",
+                  ifelse (Reef_name =="Enmedio","South",
+                  ifelse (Reef_name =="Cabezo","South","Pez")))))) %>% 
+   mutate(Reef_zone = case_when(Site_name %in% 
+                                  c("ENM1", 
+                                    "Ensenada", 
+                                    "ENM-Gorgonias",
+                                    "VRD-Cated",
+                                    "VRD-Faro", 
+                                    "Valiente_pastos", 
+                                    "BLNQ002", 
+                                    "BLNQ003", 
+                                    "Colas_de_gato", 
+                                    "Doce_metros", 
+                                    "BLNQ001") ~ "Protected",
+                                Site_name %in% c("El_ancla", 
+                                                 "Entrada_Valiente",
+                                                 "ENM-Expuesto1", 
+                                                 "ENM-Expuesto2") ~ 
+                                  "Exposed",TRUE ~ "Pez")) %>% 
+  mutate(Site_name = case_when(
+    Site_name == "El_ancla" ~ "El_Ancla",
+    TRUE ~ Site_name )) %>% 
+  full_join(Sites.CS.Meta, join_by(Site_name)) %>% 
+  na.omit() %>% 
+  rename(CryptoStation = "Microhabitat_No") %>% 
+  mutate(Park_region = ifelse (Reef_name =="Blanquilla","North",
+                  ifelse (Reef_name =="Verde","North", 
+                  ifelse (Reef_name =="Anegada de Adentro","North",
+                  ifelse (Reef_name =="Enmedio","South",
+                  ifelse (Reef_name =="Cabezo","South","Pez")))))) %>% 
+  mutate(Reef_zone = case_when ( 
+    CryptoStation %in% c("CS007", 
+                         "CS008", 
+                         "CS001", 
+                         "CS002", 
+                         "CS006",
+                         "CS005",
+                         "CS015", 
+                         "CS012", 
+                         "CS013", 
+                         "CS003", 
+                         "CS004") ~ "Protected",
+    CryptoStation %in% c("CS009", 
+                         "CS011", 
+                         "CS014", 
+                         "CS016") ~ "Exposed", 
+    TRUE ~ "Pez")) %>% 
+  filter(`Group_Classification(ImageID)` != "No_Microh") %>% 
+  mutate(`Group_Classification(ImageID)`  = recode(`Group_Classification(ImageID)`,
+                                                   "Death coral" = "Dead coral"))  
+
+   #View(CORALNET_complete)
+   #View(Sites.CS.Meta)
+   #View(CORALNET_percent_covers)
+
+
+### IMPORTANT!!! ###
+   #Valiente_pastos is eliminated from the CORALNET_complete, because we did not performed a CryptoStation in that site. 
+   #We could take images of VRD_Expuesto, because the current was too strong
+  #The site Valiente was too murky to take reliable photos
+
+
+```
+```{r CORALNET general information}
+  
+#In total we analyzed the benthic composition of 14 sites, one more was analyzed VRD_pastos, however, we did not performed a Cryptostation in that site
+CORALNET_complete %>% 
+  distinct(Site_name)
+
+#Total of 10 groups, but seagrass was not identified as a microhabitat in the PNSAV, the environment was mostly rubble and the sea grass cover percentage was too low. Therefore, seagrass was not included
+
+CNT.Id<- CORALNET_complete %>% 
+  distinct(CORALNET_ID)
+    #View(CNT.Id)
+
+# 10 grouping classes
+CORALNET_complete %>% 
+  distinct(`Group_Classification(ImageID)`)
+
+#Total of transects per site, and photos information
+Total.photos <- CORALNET_complete %>% 
+  distinct(Reef_name, Site_name, Transect, `Image name`) %>% 
+  group_by(Reef_name,Site_name, Transect) %>% 
+  summarise(T_photos_Transect = n()) %>% 
+  group_by(Reef_name, Site_name) %>% 
+  mutate(T_photos_Site = sum(T_photos_Transect)) %>% 
+  ungroup() %>% 
+  mutate(T_photos = sum(T_photos_Transect)) %>% 
+  group_by(Reef_name) %>% 
+  mutate(Transect_Reef = n())
+    View(Total.photos)
+
+#sites that do not match between CORALNET_metadata and Sites.CS.Meta (which comes from Cryptos.VER.DataFrame)
+
+anti <- Sites.CS.Meta %>% 
+  anti_join(CORALNET_metadata)
+    #View(anti)
+
+
+###
+#Mean cover of broad microhabitats in the PNSAV
+T.mean.covers<- CORALNET_complete %>% 
+   
+  group_by(`Group_Classification(ImageID)`) %>% 
+  mutate(T_mean_cover= mean(CORALNET_pcovers),
+         SD_Tmean= sd(CORALNET_pcovers)) %>% 
+  ungroup() %>% 
+  group_by(`Group_Classification(ImageID)`, Reef_zone) %>% 
+  mutate(Zone_cover= mean(CORALNET_pcovers),
+         SD_Zmean= sd(CORALNET_pcovers)) %>% 
+  filter(!`Group_Classification(ImageID)` == "Sea grass") %>%
+  distinct(`Group_Classification(ImageID)`, Reef_zone, T_mean_cover, SD_Tmean, Zone_cover, SD_Zmean) %>% 
+  pivot_wider(values_from = c(Zone_cover, 
+                              SD_Zmean),
+              names_from = Reef_zone) 
+    View(T.mean.covers)
+  
+
+T.mean.covers %>% 
+  distinct(`Group_Classification(ImageID)`, T_mean_cover)
+  
+    #View(T.mean.covers)
+
+T2.mean.covers<- CORALNET_complete %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  mutate(T_mean_cover= mean(CORALNET_pcovers),
+         SD_Tmean= sd(CORALNET_pcovers)) %>% 
+  filter(!`Group_Classification(ImageID)` == "Sea grass") %>%
+  distinct(`Group_Classification(ImageID)`,T_mean_cover, SD_Tmean)
+    #View(T2.mean.covers)
+
+# Mean covers by reef and microhabitat
+Reef.mh.cover <- CORALNET_complete %>% 
+  group_by(Reef_name, `Group_Classification(ImageID)`) %>% 
+  summarize(T_mean_cover= mean(CORALNET_pcovers),
+         SD_Tmean= sd(CORALNET_pcovers)) %>% 
+ filter(!`Group_Classification(ImageID)` == "Sea grass") %>%
+  distinct()
+View(Reef.mh.cover)
+
+```
+
+
+
+### Electivity index ###
+```{r electivity index group_by Microhabitat}
+
+
+#Here I extended the dataframe to have all the microhabitats with all the crypto species 
+### This dataframe is for the electivity index only by Microhabitatand Fish sp. I got the fish fraction by microhabitat and the mean of the percentages of microhabitats available
+Fish.Microh.Expanded<- Microh_fish_dataframe %>% 
+  mutate(Row= ifelse(Fish_catched == 0, 0, 
+                     ifelse(Fish_catched >=0, 1,"pez"))) %>% 
+  replace_na(list(Fish_species ="no_fish")) %>% 
+  filter(Fish_species != "no_fish") %>% 
+  group_by(Fish_species, `Group_Classification(ImageID)`) %>%  
+  summarise(Indv_sp_per_Mh = sum(Row)) %>% 
+  ungroup() %>% 
+  na.omit() %>% 
+  dplyr::select(`Group_Classification(ImageID)`, 
+                Fish_species, 
+                Indv_sp_per_Mh) %>% 
+  complete(`Group_Classification(ImageID)`,
+           Fish_species,
+           fill = list(Indv_sp_per_Mh = 0)) %>% 
+  group_by(Fish_species) %>% 
+  mutate(Total_sp_ind = sum(Indv_sp_per_Mh)) %>% 
+  ungroup() %>% 
+  group_by(`Group_Classification(ImageID)`, 
+                Fish_species) %>% 
+  mutate(Fish_fraction = Indv_sp_per_Mh/Total_sp_ind) %>% 
+  full_join(T2.mean.covers, 
+            by = join_by(`Group_Classification(ImageID)`)) %>% 
+  drop_na()
+    #View(Fish.Microh.Expanded)
+    #View(Microh_fish_dataframe)
+
+
+# Electivity index just by Microhabitat
+Fish.Microh.Expanded.Electivity<- Fish.Microh.Expanded %>% 
+  nest(data= c(-Fish_species)) %>% 
+  mutate(score = map(data, ~ vs_electivity(.$Fish_fraction, .$T_mean_cover))) %>% 
+  unnest(c(score, data)) %>% 
+  dplyr::select(c(-Indv_sp_per_Mh, 
+                  -Total_sp_ind, 
+                  -T_mean_cover, 
+                  -Fish_fraction)) %>% 
+  mutate(interactions =   as.numeric(ifelse(score >= 0, 1,
+                          ifelse(score <= 0, 0,
+                          ifelse(score == 0, 0, "pez"))))) %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  mutate(mh_positive_interactions = sum(interactions)) %>% 
+  group_by(Fish_species) %>% 
+  mutate(sp_positive_interactions = sum(interactions))
+    #View(Fish.Microh.Expanded.Electivity)
+hist(Fish.Microh.Expanded.Electivity$score)
+
+x<-Fish.Microh.Expanded.Electivity  %>% 
+  filter(score >= 0) %>% 
+  group_by(`Group_Classification(ImageID)`, score) %>% 
+  distinct(Fish_species) %>% 
+  ungroup() %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  mutate(n= n())
+    View(x)
+
+#Specialist
+especialist<-Fish.Microh.Expanded.Electivity  %>% 
+  filter(score >= 0.75) %>% 
+  group_by(`Group_Classification(ImageID)`, score) %>% 
+  distinct(Fish_species)
+    #View(especialist)
+
+#fish with positive association to a microhabitat
+positive<- Fish.Microh.Expanded.Electivity  %>% 
+  filter(score >= 0.1) %>% 
+  group_by(`Group_Classification(ImageID)`, score) %>% 
+  distinct(Fish_species)
+    #View(positive)
+
+#generalists
+generalist<- Fish.Microh.Expanded.Electivity  %>% 
+  filter(score <= 0.79999 & score > 0) %>% 
+  group_by(`Group_Classification(ImageID)`, score) %>% 
+  distinct(Fish_species) %>% 
+  ungroup() %>% 
+  group_by(Fish_species) %>% 
+  mutate(n= n()) %>% 
+  filter(n == 3) 
+  distinct(Fish_species)
+    #View(generalist)
+
+
+
+T.Fish.Microh.Expanded.Electivity<- Fish.Microh.Expanded.Electivity %>%
+  spread(Fish_species, score)
+    #View(T.Fish.Microh.Expanded.Electivity)
+
+
+#Electivity index heat map
+    #Data
+ Sp_electivity <- ggplot(data  = Fish.Microh.Expanded.Electivity, 
+            aes(x = reorder(`Group_Classification(ImageID)`,
+                       -mh_positive_interactions), 
+                y = reorder(Fish_species, 
+                       sp_positive_interactions))) +
+    #Heatmap of species <0.78
+  geom_tile(aes(alpha = score),
+            fill = "gray",
+            colour = "white", 
+            size = 0.01,
+            linewidth = 1) +
+    #Heatmap of specialist
+  geom_tile(data = especialist,
+            aes(x = `Group_Classification(ImageID)`,
+                y = Fish_species,
+                fill = `Group_Classification(ImageID)`),
+            colour = "white",
+            linewidth = 1) +
+    #Heatmap transparency
+  scale_alpha(range= c(-.9, 1),
+              limits = c(-1, 1),
+              breaks = c(-1, 0, 0.5, 1),
+              name = "Electivity index") +
+    #Legend
+  guides(fill = "none") +
+
+  #Aesthetics
+   scale_fill_manual(values= ManualColours) +
+   scale_x_discrete(labels = label_wrap(10)) +
+   
+   
+   theme(axis.text.y = element_text(size= 10, face= "italic"), 
+         axis.title = element_text(face="bold", 
+                                   size = 16, 
+                                   vjust = -1),
+         axis.title.x = element_blank(),
+         axis.title.y = element_blank(),
+         axis.text.x.bottom = element_text(size= 8.5),
+         strip.text.x = element_text(size = 10),
+         panel.spacing = unit(1, "lines"), 
+         strip.background = element_blank(),
+         strip.placement = "outside", 
+         
+         legend.title = element_text(size = 10, face="bold"),
+         legend.text = element_text(size = 10),
+         legend.key.spacing = unit(1.0, 'cm'),
+         legend.position = "bottom",
+         legend.background = element_rect(fill = "gray95"),
+         legend.box.spacing = unit(40, "pt"),
+         panel.background = element_rect(fill = "white"),
+         panel.border = element_rect(colour = "gray89",
+                                     fill = NA),
+         panel.grid.major= element_line(colour = "gray93"),
+         panel.grid.minor.y= element_line(colour = "gray93"))
+ Sp_electivity
+ 
+ ggsave("Fig6.pdf", 
+        plot = Sp_electivity, 
+        width = 9,
+        height = 7,
+        units = "in",
+        path = Ch1_plots_path)
+
+#prediction? how the index treats the absence of a resorce?
+#Transform the data to correct percentages.
+```
+
+
+### Niche analysis ###
+```{r Niche width Levins and Shannon for each species}
+
+install.packages("spaa")
+library(spaa)
+
+#Creating a dataframe with the following columns: species, sites, abundance.
+
+#Niche dataframe from:
+    #View(Fish.Microh.Expanded)
+
+Fish.Microh.Expanded.Niche <- as.data.frame(Fish.Microh.Expanded %>% 
+  dplyr::select(Fish_species, 
+                `Group_Classification(ImageID)`, 
+                Indv_sp_per_Mh) %>% 
+  #Gather to a matrix in which species are columns and rows the Microhabitats
+  pivot_wider(names_from = Fish_species, 
+              values_from = Indv_sp_per_Mh, 
+              values_fill = 0)) %>% 
+  dplyr::select(-c(`Group_Classification(ImageID)`))
+    #View(Fish.Microh.Expanded.Niche)
+
+
+# Shannon niche, niche width. Shannon gives more weigth to the rare resources used by species 
+
+# When to use Shannon:
+#If you want to understand how specialized a species is across a wide range of potential resources, even if they are rarely used, use the Shannon niche calculation.
+
+CRF.Shannon.niche<-as.data.frame(niche.width(Fish.Microh.Expanded.Niche, 
+                   method = "shannon")) %>% 
+  mutate(column_to_remove = 0) %>% 
+  pivot_longer(!column_to_remove,
+               values_to = "Shannon_niche_width", 
+               names_to = "Fish_species") %>% 
+  dplyr::select(-column_to_remove)
+    #View(CRF.Shannon.niche)
+
+# Levins niche, niche width. Levins gives more weight to the abundant resources
+
+#When to use Levine:
+#If you want to focus on the primary resource used by a species and how dominant it is in their niche, use the Levine niche calculation. 
+
+CRF.Levins.niche<-as.data.frame(niche.width(Fish.Microh.Expanded.Niche, 
+                   method = "levins")) %>% 
+  mutate(column_to_remove = 0) %>% 
+  pivot_longer(!column_to_remove,
+               values_to = "Levins_niche_width", 
+               names_to = "Fish_species") %>% 
+  dplyr::select(-column_to_remove)
+    #View(CRF.Levins.niche)
+
+#both niches values, Levins + Shannon
+
+CRF.Levins.shannon.Niche <- CRF.Levins.niche %>% 
+  right_join(CRF.Shannon.niche) %>% 
+  mutate(column_to_remove = 0) %>% 
+  mutate(across(c('Levins_niche_width', 
+                   'Shannon_niche_width'), round, 3))
+    #View(CRF.Levins.shannon.Niche)
+
+```
+```{r Mean niche across microhabitats}
+
+#Join frames
+
+CRF.Levins.shannon.Niche
+Fish.Microh.Expanded.Electivity
+
+Specialization.frame <- Fish.Microh.Expanded %>% 
+  full_join(CRF.Levins.shannon.Niche, join_by(Fish_species)) %>% 
+  filter(!Indv_sp_per_Mh == 0) 
+    #View(Specialization.frame)
+
+Mh.Specialization.frame <- Specialization.frame %>% 
+  distinct(Fish_species, 
+           `Group_Classification(ImageID)`, 
+           Levins_niche_width) %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  mutate(Mean_Mh_niche = mean(Levins_niche_width),
+         SD = sd(Levins_niche_width),
+         N = n(),
+         SE = SD/sqrt(N))
+    #View(Mh.Specialization.frame)
+
+
+
+#Plotting
+
+  Mh_Niche <-  ggplot(Mh.Specialization.frame) +
+      geom_point(aes(y = reorder(`Group_Classification(ImageID)`, -Mean_Mh_niche),
+                     x = Mean_Mh_niche,
+                     colour = `Group_Classification(ImageID)`,
+                     fill = `Group_Classification(ImageID)`),
+                 size = 3) +
+      geom_jitter(aes(y = reorder(`Group_Classification(ImageID)`, -Mean_Mh_niche),
+                     x = Levins_niche_width, 
+                      colour = `Group_Classification(ImageID)`),
+                 size = 3,
+                 alpha = 0.2,
+                 position = position_jitterdodge(jitter.width  = 0.3,
+                                             jitter.height = 0.1,
+                                             dodge.width   = 1)) +
+      #Horizontal SD bars
+      geom_errorbarh(aes(y = reorder(`Group_Classification(ImageID)`,
+                                     -Mean_Mh_niche),
+                         xmin = Mean_Mh_niche - SE,
+                         xmax = Mean_Mh_niche + SE,
+                         colour = `Group_Classification(ImageID)`),
+                     height = 0,
+                     linewidth= 1, 
+                     alpha=0.2) +
+      #Aesthetics
+      xlab("Mean Levin's niche width") +
+      scale_y_discrete(labels = c("Death coral"= "Dead coral")) +
+      scale_color_manual(values = ManualColours) +
+      theme_cowplot(font_size = 14) + 
+      theme(legend.position = "none",
+            axis.text  = element_text(size= 10),
+            axis.text.y  = element_text(size= 10),
+            axis.title.y = element_blank(),
+            axis.title.x = element_text(face="bold",
+                                        size = 10))
+  Mh_Niche
+  
+    ggsave("Fig7.pdf", 
+           plot = Mh_Niche, 
+           width = 4, 
+           units = "in",
+           path = Ch1_plots_path)
+      
+```
+
+
+#Supplemntal data
+
+
+```{r Richness abundance and transects info}
+
+#Main data frame that displays the richnes and abundace of cryptos per CryptoStation
+Crypto.VER.abun.rich<-Cryptos.VER.DataFrame %>% 
+  filter(Methodology == "CryptoStation") %>% 
+  group_by(Park_region, Reef_name, Reef_zone, Microhabitat_No) %>%
+  summarize(richness  = n_distinct(Fish_species),
+            abundance = n()) %>% 
+  ungroup() %>% 
+  group_by(Reef_name) %>% 
+  mutate( mean_abun= mean(abundance),
+          sd_abun = sd(abundance),
+          mean_richness = mean(richness),
+          sd_rich = sd(richness))
+    #View(Crypto.VER.abun.rich)
+
+
+
+
+```
+
+```{r Heatmap of PNSAV of the benthic covers}
+
+Heatmap.mh.frame<- CORALNET_complete %>% 
+  group_by(Park_region,CryptoStation, Site_name, Reef_name, Reef_zone, `Group_Classification(ImageID)`) %>% 
+  summarise(mean_cover = mean(CORALNET_pcovers))  %>% 
+  filter(!`Group_Classification(ImageID)` %in% c("Zoanthid", "White coral", "No_Microh", "Sea grass"))
+View(Heatmap.mh.frame)
+
+Heatmap.mh.frame %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  summarise(mean_cover = mean(mean_cover))
+
+
+  CORALNET_Heatmap <- CORALNET_complete %>% 
+  group_by(Park_region,
+           CryptoStation, 
+           Site_name, 
+           Reef_name, 
+           Reef_zone, 
+           `Group_Classification(ImageID)`) %>% 
+  summarise(mean_cover = mean(CORALNET_pcovers))  %>% 
+  filter(!`Group_Classification(ImageID)` %in% c("Zoanthid", 
+                                                 "White coral", 
+                                                 "No_Microh", 
+                                                 "Sea grass")) %>% 
+   
+  
+  ggplot(., aes(x= factor(CryptoStation), 
+                y= reorder(`Group_Classification(ImageID)`, 
+                           mean_cover)))+
+  geom_tile(aes(alpha = mean_cover,
+                fill = Reef_zone), 
+            colour = "white", 
+            size = 0.01) +
+  scale_alpha(range = c(0.1, 2), name = "Coverture percentage") +
+  guides(fill = guide_legend(title = "Reef zone")) +
+  scale_fill_manual(values= c( "#FF9000", "#5F0F40"),
+                      labels=c("Exposed", "Protected")) +
+  xlab( "Reef") + 
+  ylab("Microhabitat") +
+  theme(axis.text.y = element_text(size= 12), 
+        axis.title = element_text(face="bold", size = 16, vjust = -2),
+        axis.text.x.bottom = element_text(size= 8),
+        strip.text.x = element_text(size= 12),
+        panel.spacing = unit(0, "lines"), 
+        strip.background = element_blank(),
+        strip.placement = "outside", 
+        legend.title = element_text(size= 12, face="bold"),
+        legend.text = element_text(size=12),
+        panel.background = element_rect(fill = "white")) +
+  facet_wrap(Reef_name~factor(Park_region, c("North", "South")), nrow = 1,
+             strip.position = "bottom", scales = "free_x") 
+  
+
+``` 
+
+```{r Fish abundance and richness in microhabitats}
+
+Median.richness.microh.cryptos <- Richness.Microh.cryptos.Ver %>% 
+  group_by(Microhabitat_label, 
+           `Group_Classification(ImageID)`) %>% 
+  distinct(Microhabitat_label, 
+           `Group_Classification(ImageID)`, 
+           Richnes.by.Microh) %>% 
+  ungroup() %>% 
+  group_by(`Group_Classification(ImageID)`) %>% 
+  summarise(Median_cryptos_Mh = median(Richnes.by.Microh),
+            SD = sd(Richnes.by.Microh))
+    #View(Median.richness.microh.cryptos)
+
+### To obtain the median abundance of cryptobenthic reef fishes
+  CRF_abun_median<- Microh.cryptos.catched.Ver %>% 
+    group_by(`Group_Classification(ImageID)`) %>% 
+    summarise(x = sum(Crypto_abun),
+              median = median(Crypto_abun),
+              mean = mean(Crypto_abun),
+              SD = sd(Crypto_abun))
+      View(CRF_abun_median)
+
+```
+
+```{r Levines niche and mh table}
+
+# Selecting only Microhabitat and CRF sp, then expanding if to create a table
+
+Levins_niche_mh<-Microh_fish_dataframe %>% 
+  dplyr::select(Fish_species, `Group_Classification(ImageID)`) %>% 
+  distinct(Fish_species, `Group_Classification(ImageID)`) %>% 
+  na.omit() %>% 
+  mutate(Presence = 1) %>% 
+  ungroup() %>% 
+  complete(Fish_species,
+           `Group_Classification(ImageID)`,
+           fill = list(Presence = 0)) %>% 
+  right_join(CRF.Levins.niche,
+             by = join_by(Fish_species)) %>% 
+  pivot_wider(names_from = `Group_Classification(ImageID)`,
+              values_from = Presence) %>% 
+  arrange(-Levins_niche_width)
+
+    #View(Levins_niche_mh)
+    #View(Microh_fish_dataframe)
+
+write.xlsx(Levins_niche_mh, 
+          file="Ch1/Microh_resulted_ExcelFrames/Levins_niche_mh.xlsx")
+
+
+```
+
+
