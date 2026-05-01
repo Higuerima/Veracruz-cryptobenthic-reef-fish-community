@@ -1,0 +1,359 @@
+"","Date","Year","Month","Country","Reef_name","Site_name","Reef_zone","N","W","Methodology","Transect","Microhabitat_No","Microhabitat_label","Field_component_ID","Group_Classification(ImageID)","Fish_catched"
+"1","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh001","2023.8_BLNQ001_Mh001","Cave","Cave",6
+"2","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh002","2023.8_BLNQ001_Mh002","Sponge","Sponge",4
+"3","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh003","2023.8_BLNQ001_Mh003","Sand","Sand",6
+"4","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh004","2023.8_BLNQ001_Mh004","Coral","Scleractinian coral",2
+"5","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh005","2023.8_BLNQ001_Mh005","Sponge","Sponge",2
+"6","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh006","2023.8_BLNQ001_Mh006","Algae","Turf",3
+"7","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh007","2023.8_BLNQ001_Mh007","Coral","Scleractinian coral",1
+"8","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh009","2023.8_BLNQ001_Mh009","Sponge","Sponge",3
+"9","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh010","2023.8_BLNQ001_Mh010","Sponge","Sponge",3
+"10","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh011","2023.8_BLNQ001_Mh011","Cave","Cave",5
+"11","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh012","2023.8_BLNQ001_Mh012","Coral","Scleractinian coral",3
+"12","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh013","2023.8_BLNQ001_Mh013","Death coral","Dead coral",5
+"13","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh014","2023.8_BLNQ001_Mh014","Cave","Cave",10
+"14","45160","2023",8,"Mexico","Blanquilla","BLNQ001","Back","19.222670000000001",-96.09687,"Roving Quadrant","Q","Mh015","2023.8_BLNQ001_Mh015","Coral","Scleractinian coral",7
+"15","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh241","2023.8_Doce_metros_Mh241","Cave","Cave",8
+"16","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh248","2023.8_Doce_metros_Mh248","Cave","Cave",6
+"17","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh240","2023.8_Doce_metros_Mh240","Cave","Cave",0
+"18","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh247","2023.8_Doce_metros_Mh247","Sponge","Sponge",0
+"19","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh239","2023.8_Doce_metros_Mh239","Cave","Cave",3
+"20","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh242","2023.8_Doce_metros_Mh242","Sponge","Sponge",1
+"21","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh244","2023.8_El_Ancla_Mh244","Cave","Cave",2
+"22","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh245","2023.8_El_Ancla_Mh245","Sponge","Sponge",0
+"23","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh246","2023.8_El_Ancla_Mh246","Sponge","Sponge",0
+"24","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh211","2023.8_Doce_metros_Mh211","Coral","Scleractinian coral",2
+"25","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh212","2023.8_Doce_metros_Mh212","Coral","Scleractinian coral",0
+"26","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh213","2023.8_Doce_metros_Mh213","Coral","Scleractinian coral",6
+"27","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh214","2023.8_Doce_metros_Mh214","Coral","Scleractinian coral",2
+"28","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh215","2023.8_Doce_metros_Mh215","Coral","Scleractinian coral",0
+"29","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh216","2023.8_Doce_metros_Mh216","Coral","Scleractinian coral",0
+"30","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh217","2023.8_Doce_metros_Mh217","Coral","Scleractinian coral",4
+"31","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh218","2023.8_Doce_metros_Mh218","Coral","Scleractinian coral",1
+"32","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh219","2023.8_Doce_metros_Mh219","Coral","Scleractinian coral",5
+"33","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh220","2023.8_Doce_metros_Mh220","Coral","Scleractinian coral",2
+"34","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh269","2023.8_El_Ancla_Mh269","Cave","Cave",3
+"35","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh270","2023.8_El_Ancla_Mh270","Cave","Cave",5
+"36","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh271","2023.8_El_Ancla_Mh271","Cave","Cave",6
+"37","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh272","2023.8_El_Ancla_Mh272","Cave","Cave",4
+"38","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh273","2023.8_El_Ancla_Mh273","Cave","Cave",3
+"39","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh274","2023.8_El_Ancla_Mh274","Cave","Cave",6
+"40","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh275","2023.8_El_Ancla_Mh275","Cave","Cave",0
+"41","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh276","2023.8_El_Ancla_Mh276","Cave","Cave",4
+"42","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh277","2023.8_El_Ancla_Mh277","Cave","Cave",3
+"43","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh260","2023.8_El_Ancla_Mh260","Cave","Cave",3
+"44","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh183","2023.8_Doce_metros_Mh183","Sponge","Sponge",0
+"45","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh279","2023.8_Doce_metros_Mh279","Sponge","Sponge",0
+"46","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh288","2023.8_Doce_metros_Mh288","Gorgonia","Gorgonia",0
+"47","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh091","2023.8_Doce_metros_Mh091","Gorgonia","Gorgonia",0
+"48","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh287","2023.8_Doce_metros_Mh287","Turf","Turf",1
+"49","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh089","2023.8_Doce_metros_Mh089","Turf","Turf",0
+"50","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh184","2023.8_Doce_metros_Mh184","Sponge","Sponge",0
+"51","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh189","2023.8_Doce_metros_Mh189","Sponge","Sponge",1
+"52","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh087","2023.8_Doce_metros_Mh087","Sponge","Sponge",0
+"53","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh286","2023.8_Doce_metros_Mh286","Rubble","Rubble",8
+"54","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh185","2023.8_El_Ancla_Mh185","Cave","Cave",0
+"55","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh259","2023.8_El_Ancla_Mh259","Coral","Scleractinian coral",0
+"56","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh186","2023.8_El_Ancla_Mh186","Death coral","Dead coral",0
+"57","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh221","2023.8_El_Ancla_Mh221","Death coral","Dead coral",3
+"58","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh222","2023.8_El_Ancla_Mh222","Death coral","Dead coral",6
+"59","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh223","2023.8_El_Ancla_Mh223","Death coral","Dead coral",0
+"60","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh224","2023.8_El_Ancla_Mh224","Death coral","Dead coral",0
+"61","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh225","2023.8_El_Ancla_Mh225","Death coral","Dead coral",5
+"62","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh226","2023.8_El_Ancla_Mh226","Death coral","Dead coral",3
+"63","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh227","2023.8_El_Ancla_Mh227","Death coral","Dead coral",1
+"64","45169","2023",8,"Mexico","Anegada de Adentro","El_Ancla","Front","19.223179999999999",-96.0478,"Roving Quadrant","Q","Mh228","2023.8_El_Ancla_Mh228","Death coral","Dead coral",0
+"65","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh249","2023.8_Doce_metros_Mh249","Cave","Cave",6
+"66","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh250","2023.8_Doce_metros_Mh250","Cave","Cave",1
+"67","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh251","2023.8_Doce_metros_Mh251","Cave","Cave",4
+"68","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh252","2023.8_Doce_metros_Mh252","Cave","Cave",7
+"69","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh253","2023.8_Doce_metros_Mh253","Cave","Cave",5
+"70","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh254","2023.8_Doce_metros_Mh254","Cave","Cave",8
+"71","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh255","2023.8_Doce_metros_Mh255","Cave","Cave",16
+"72","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh256","2023.8_Doce_metros_Mh256","Cave","Cave",8
+"73","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh257","2023.8_Doce_metros_Mh257","Cave","Cave",5
+"74","45169","2023",8,"Mexico","Anegada de Adentro","Doce_metros","Back","19.22064",-96.05063,"Roving Quadrant","Q","Mh258","2023.8_Doce_metros_Mh258","Cave","Cave",13
+"75","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh071","2023.8_BLNQ002_Mh071","Turf","Turf",6
+"76","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh072","2023.8_BLNQ002_Mh072","Death coral","Dead coral",3
+"77","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh073","2023.8_BLNQ002_Mh073","Turf","Turf",0
+"78","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh074","2023.8_BLNQ002_Mh074","Death coral","Dead coral",1
+"79","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh075","2023.8_BLNQ002_Mh075","Death coral","Dead coral",5
+"80","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh076","2023.8_BLNQ002_Mh076","Death coral","Dead coral",2
+"81","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh118","2023.8_BLNQ002_Mh118","Turf","Turf",1
+"82","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh115","2023.8_BLNQ002_Mh115",NA,"Turf",0
+"83","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh116","2023.8_BLNQ002_Mh116","Death coral","Dead coral",5
+"84","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh117","2023.8_BLNQ002_Mh117","Turf","Turf",4
+"85","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh080","2023.8_BLNQ002_Mh080","Death coral","Dead coral",6
+"86","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh068","2023.8_BLNQ002_Mh068","Sponge","Sponge",1
+"87","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh067","2023.8_BLNQ002_Mh067","Sponge","Sponge",0
+"88","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh066","2023.8_BLNQ002_Mh066","Sponge","Sponge",0
+"89","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh065","2023.8_BLNQ002_Mh065","Sponge","Sponge",0
+"90","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh190","2023.8_BLNQ002_Mh190","Sponge","Sponge",0
+"91","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh059","2023.8_BLNQ002_Mh059","Sponge","Sponge",1
+"92","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh060","2023.8_BLNQ002_Mh060","Sponge","Sponge",3
+"93","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh064","2023.8_BLNQ002_Mh064","Sponge","Sponge",1
+"94","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh063","2023.8_BLNQ002_Mh063","Sponge","Sponge",0
+"95","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh062","2023.8_BLNQ002_Mh062","Sponge","Sponge",1
+"96","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh061","2023.8_BLNQ002_Mh061","Cave","Cave",10
+"97","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",0,"Roving Quadrant","Q","Mh187","2023.8_Colas_de_gato_Mh187","Cave","Cave",3
+"98","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh188","2023.8_Colas_de_gato_Mh188","Gorgonia","Gorgonia",0
+"99","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh096","2023.8_Colas_de_gato_Mh096","Death coral","Dead coral",1
+"100","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh095","2023.8_Colas_de_gato_Mh095","Rubble","Rubble",1
+"101","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh080","2023.8_Colas_de_gato_Mh080","Cave","Cave",0
+"102","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh181","2023.8_Colas_de_gato_Mh181","Gorgonia","Gorgonia",0
+"103","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh182","2023.8_Colas_de_gato_Mh182","Sponge","Sponge",0
+"104","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh094","2023.8_Colas_de_gato_Mh094","Coral","Scleractinian coral",2
+"105","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh093","2023.8_Colas_de_gato_Mh093","Coral","Scleractinian coral",1
+"106","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh088","2023.8_Colas_de_gato_Mh088","Cave","Cave",4
+"107","45168","2023",8,"Mexico","Anegada de Adentro","Colas_de_gato","Back","19.224",-96.09538,"Roving Quadrant","Q","Mh092","2023.8_Colas_de_gato_Mh092","Cave","Cave",7
+"108","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh151","2023.8_VRD-Cated_Mh151","Cave","Cave",9
+"109","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh152","2023.8_VRD-Cated_Mh152","Cave","Cave",0
+"110","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh153","2023.8_VRD-Cated_Mh153","Cave","Cave",3
+"111","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh155","2023.8_VRD-Cated_Mh155","Cave","Cave",2
+"112","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh154","2023.8_VRD-Cated_Mh154","Sponge","Sponge",0
+"113","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh156","2023.8_VRD-Cated_Mh156","Sponge","Sponge",1
+"114","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh157","2023.8_VRD-Cated_Mh157","Sponge","Sponge",0
+"115","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh158","2023.8_VRD-Cated_Mh158","Sponge","Sponge",0
+"116","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh159","2023.8_VRD-Cated_Mh159","Sponge","Sponge",1
+"117","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh160","2023.8_VRD-Cated_Mh160","Sponge","Sponge",0
+"118","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh109","2023.8_VRD-Faro_Mh109","Gorgonia","Gorgonia",0
+"119","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh110","2023.8_VRD-Faro_Mh110","Gorgonia","Gorgonia",0
+"120","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh111","2023.8_VRD-Faro_Mh111","Sponge","Sponge",3
+"121","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh112","2023.8_VRD-Faro_Mh112","Gorgonia","Gorgonia",1
+"122","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh149","2023.8_VRD-Faro_Mh149","Gorgonia","Gorgonia",0
+"123","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh113","2023.8_VRD-Faro_Mh113","Gorgonia","Gorgonia",0
+"124","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh114","2023.8_VRD-Faro_Mh114","Sponge","Sponge",2
+"125","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh077","2023.8_VRD-Faro_Mh077","Sponge","Sponge",0
+"126","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh107","2023.8_VRD-Cated_Mh107","Death coral","Dead coral",8
+"127","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh018","2023.8_VRD-Cated_Mh018","Death coral","Dead coral",8
+"128","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh108","2023.8_VRD-Cated_Mh108","Death coral","Dead coral",4
+"129","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh019","2023.8_VRD-Cated_Mh019","Sponge","Sponge",0
+"130","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh030","2023.8_VRD-Cated_Mh030","Sponge","Sponge",0
+"131","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh029","2023.8_VRD-Cated_Mh029","Sponge","Sponge",0
+"132","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh028","2023.8_VRD-Cated_Mh028","Sponge","Sponge",1
+"133","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh051","2023.8_VRD-Cated_Mh051","Gorgonia","Gorgonia",0
+"134","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh049","2023.8_VRD-Cated_Mh049","Rubble","Rubble",0
+"135","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh050","2023.8_VRD-Cated_Mh050","Sand","Sand",2
+"136","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh150","2023.8_VRD-Cated_Mh150","Sand","Sand",5
+"137","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh161","2023.8_VRD-Faro_Mh161","Sponge","Sponge",2
+"138","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh162","2023.8_VRD-Faro_Mh162","Sponge","Sponge",0
+"139","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh163","2023.8_VRD-Faro_Mh163","Sponge","Sponge",2
+"140","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh164","2023.8_VRD-Faro_Mh164","Cave","Cave",10
+"141","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh165","2023.8_VRD-Faro_Mh165","Sponge","Sponge",1
+"142","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh166","2023.8_VRD-Faro_Mh166","Sponge","Sponge",1
+"143","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh167","2023.8_VRD-Faro_Mh167","Sponge","Sponge",2
+"144","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh168","2023.8_VRD-Faro_Mh168","Cave","Cave",0
+"145","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh097","2023.8_VRD-Cated_Mh097","Coral","Scleractinian coral",0
+"146","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh098","2023.8_VRD-Cated_Mh098","Coral","Scleractinian coral",1
+"147","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh099","2023.8_VRD-Cated_Mh099","Coral","Scleractinian coral",0
+"148","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh100","2023.8_VRD-Cated_Mh100","Coral","Scleractinian coral",0
+"149","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh101","2023.8_VRD-Cated_Mh101","Coral","Scleractinian coral",0
+"150","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh102","2023.8_VRD-Cated_Mh102","Coral","Scleractinian coral",0
+"151","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh103","2023.8_VRD-Cated_Mh103","Coral","Scleractinian coral",0
+"152","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh104","2023.8_VRD-Cated_Mh104","Coral","Scleractinian coral",0
+"153","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh105","2023.8_VRD-Cated_Mh105","Coral","Scleractinian coral",3
+"154","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh106","2023.8_VRD-Cated_Mh106","Coral","Scleractinian coral",3
+"155","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh020","2023.8_BLNQ003_Mh020","Sponge","Sponge",0
+"156","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh021","2023.8_BLNQ003_Mh021","Sponge","Sponge",2
+"157","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh022","2023.8_BLNQ003_Mh022","Cave","Cave",4
+"158","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh023","2023.8_BLNQ003_Mh023","Sponge","Sponge",2
+"159","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh024","2023.8_BLNQ003_Mh024","Sponge","Sponge",1
+"160","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh025","2023.8_BLNQ003_Mh025","Sponge","Sponge",12
+"161","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh026","2023.8_BLNQ003_Mh026","Sponge","Sponge",0
+"162","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh027","2023.8_BLNQ003_Mh027","Cave","Cave",8
+"163","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh039","2023.8_BLNQ003_Mh039","Coral","Scleractinian coral",4
+"164","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh040","2023.8_BLNQ003_Mh040","Sand","Sand",0
+"165","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh041","2023.8_BLNQ003_Mh041","Coral","Scleractinian coral",0
+"166","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh042","2023.8_BLNQ003_Mh042","Coral","Scleractinian coral",4
+"167","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh043","2023.8_BLNQ003_Mh043","Coral","Scleractinian coral",2
+"168","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh044","2023.8_BLNQ003_Mh044","Coral","Scleractinian coral",1
+"169","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh045","2023.8_BLNQ003_Mh045","Sand","Sand",4
+"170","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh046","2023.8_BLNQ003_Mh046","Sand","Sand",2
+"171","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh047","2023.8_BLNQ003_Mh047","Sand","Sand",5
+"172","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh048","2023.8_BLNQ003_Mh048","Sand","Sand",4
+"173","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh016","2023.8_BLNQ003_Mh016","Coral","Scleractinian coral",1
+"174","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh053","2023.8_BLNQ003_Mh053","Gorgonia","Gorgonia",0
+"175","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh054","2023.8_BLNQ003_Mh054","Gorgonia","Gorgonia",4
+"176","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh052","2023.8_BLNQ003_Mh052","Gorgonia","Gorgonia",5
+"177","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh058","2023.8_BLNQ003_Mh058","Gorgonia","Gorgonia",3
+"178","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh057","2023.8_BLNQ003_Mh057","Gorgonia","Gorgonia",5
+"179","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh056","2023.8_BLNQ003_Mh056","Death coral","Dead coral",4
+"180","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh017","2023.8_BLNQ003_Mh017","Death coral","Dead coral",14
+"181","45166","2023",8,"Mexico","Blanquilla","BLNQ003","Back","19.224889999999998",-96.10052,"Roving Quadrant","Q","Mh055","2023.8_BLNQ003_Mh055","Death coral","Dead coral",10
+"182","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh191","2023.8_Valiente_pastos_Mh191","Rubble","Rubble",0
+"183","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh192","2023.8_Valiente_pastos_Mh192","Rubble","Rubble",1
+"184","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh194","2023.8_Valiente_pastos_Mh194","Rubble","Rubble",0
+"185","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh195","2023.8_Valiente_pastos_Mh195","Rubble","Rubble",2
+"186","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh196","2023.8_Valiente_pastos_Mh196","Rubble","Rubble",1
+"187","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh197","2023.8_Valiente_pastos_Mh197","Rubble","Rubble",3
+"188","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh198","2023.8_Valiente_pastos_Mh198","Rubble","Rubble",1
+"189","45176","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh031","2023.8_Entrada_Valiente_Mh031","Cave","Cave",8
+"190","45176","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh032","2023.8_Entrada_Valiente_Mh032","Death coral","Dead coral",4
+"191","45176","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh033","2023.8_Entrada_Valiente_Mh033","Cave","Cave",0
+"192","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh199","2023.8_Valiente_pastos_Mh199","Rubble","Rubble",1
+"193","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh034","2023.8_Valiente_pastos_Mh034","Algae","Algae",0
+"194","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh035","2023.8_Valiente_pastos_Mh035","Algae","Algae",3
+"195","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh036","2023.8_Valiente_pastos_Mh036","Algae","Algae",0
+"196","45176","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh037","2023.8_Valiente_pastos_Mh037","Algae","Algae",2
+"197","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh119","2023.8_BLNQ002_Mh119","Cave","Cave",7
+"198","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh120","2023.8_BLNQ002_Mh120","Cave","Cave",4
+"199","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh121","2023.8_BLNQ002_Mh121","Cave","Cave",8
+"200","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh122","2023.8_BLNQ002_Mh122","Cave","Cave",4
+"201","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh123","2023.8_BLNQ002_Mh123","Cave","Cave",6
+"202","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh124","2023.8_BLNQ002_Mh124","Cave","Cave",7
+"203","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh125","2023.8_BLNQ002_Mh125","Cave","Cave",6
+"204","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh126","2023.8_BLNQ002_Mh126","Cave","Cave",8
+"205","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh127","2023.8_BLNQ002_Mh127","Cave","Cave",4
+"206","45168","2023",8,"Mexico","Blanquilla","BLNQ002","Back","19.223890000000001",-96.09529,"Roving Quadrant","Q","Mh128","2023.8_BLNQ002_Mh128","Cave","Cave",4
+"207","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh078","2023.8_Entrada_Valiente_Mh078","Turf","Turf",7
+"208","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh079","2023.8_Entrada_Valiente_Mh079","Turf","Turf",7
+"209","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh080","2023.8_Entrada_Valiente_Mh080","Algae","Dead coral",1
+"210","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh081","2023.8_Entrada_Valiente_Mh081","Death coral","Dead coral",2
+"211","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh082","2023.8_Entrada_Valiente_Mh082","Death coral","Dead coral",5
+"212","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh083","2023.8_Entrada_Valiente_Mh083","Death coral","Dead coral",9
+"213","45175","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh229","2023.8_Valiente_pastos_Mh229","Rubble","Rubble",0
+"214","45175","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh084","2023.8_Valiente_pastos_Mh084","Rubble","Rubble",1
+"215","45175","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh085","2023.8_Valiente_pastos_Mh085","Rubble","Rubble",2
+"216","45175","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh086","2023.8_Valiente_pastos_Mh086","Rubble","Rubble",5
+"217","45175","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh230","2023.8_Valiente_pastos_Mh230","Seagrass","Rubble",0
+"218","45175","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh231","2023.8_Valiente_pastos_Mh231","Rubble","Rubble",0
+"219","45175","2023",8,"Mexico","Cabezo","Valiente_pastos","Back","19.085000000000001",-96.85736,"Roving Quadrant","Q","Mh232","2023.8_Valiente_pastos_Mh232","Rubble","Rubble",4
+"220","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh261","2023.8_Entrada_Valiente_Mh261","Cave","Cave",2
+"221","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh262","2023.8_Entrada_Valiente_Mh262","Cave","Cave",1
+"222","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh263","2023.8_Entrada_Valiente_Mh263","Cave","Cave",3
+"223","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh264","2023.8_Entrada_Valiente_Mh264","Cave","Cave",6
+"224","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh265","2023.8_Entrada_Valiente_Mh265","Cave","Cave",1
+"225","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh266","2023.8_Entrada_Valiente_Mh266","Cave","Cave",1
+"226","45175","2023",8,"Mexico","Cabezo","Entrada_Valiente","Front","19.095839999999999",-95.85925,"Roving Quadrant","Q","Mh267","2023.8_Entrada_Valiente_Mh267","Cave","Cave",2
+"227","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh400","2023.8_ENM1_Mh400","Coral","Scleractinian coral",5
+"228","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh401","2023.8_ENM1_Mh401","Coral","Scleractinian coral",6
+"229","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh402","2023.8_ENM1_Mh402","Coral","Scleractinian coral",2
+"230","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh403","2023.8_ENM1_Mh403","Coral","Scleractinian coral",4
+"231","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh404","2023.8_ENM1_Mh404","Coral","Scleractinian coral",6
+"232","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh405","2023.8_ENM1_Mh405","Coral","Scleractinian coral",4
+"233","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh406","2023.8_ENM1_Mh406","Coral","Scleractinian coral",13
+"234","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh407","2023.8_ENM1_Mh407","Coral","Scleractinian coral",6
+"235","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh408","2023.8_ENM1_Mh408","Coral","Scleractinian coral",3
+"236","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh409","2023.8_ENM1_Mh409","Coral","Scleractinian coral",6
+"237","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh421","2023.8_ENM-Expuesto1_Mh421","Coral","Scleractinian coral",0
+"238","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh422","2023.8_ENM-Expuesto1_Mh422","Coral","Scleractinian coral",1
+"239","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh423","2023.8_ENM-Expuesto1_Mh423","Coral","Scleractinian coral",2
+"240","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh424","2023.8_ENM-Expuesto1_Mh424","Coral","Scleractinian coral",1
+"241","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh425","2023.8_ENM-Expuesto1_Mh425","Coral","Scleractinian coral",0
+"242","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh426","2023.8_ENM-Expuesto1_Mh426","Coral","Scleractinian coral",1
+"243","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh427","2023.8_ENM-Expuesto1_Mh427","Coral","Scleractinian coral",1
+"244","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh428","2023.8_ENM-Expuesto1_Mh428","Coral","Scleractinian coral",1
+"245","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh390","2023.8_ENM-Expuesto1_Mh390","Turf","Turf",4
+"246","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh391","2023.8_ENM-Expuesto1_Mh391","Turf","Turf",1
+"247","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh392","2023.8_ENM-Expuesto1_Mh392","Turf","Turf",6
+"248","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh393","2023.8_ENM-Expuesto1_Mh393","Turf","Turf",4
+"249","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh394","2023.8_ENM-Expuesto1_Mh394","Sponge","Sponge",0
+"250","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh395","2023.8_ENM-Expuesto1_Mh395","Turf","Turf",0
+"251","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh396","2023.8_ENM1_Mh396","Sponge","Sponge",0
+"252","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh397","2023.8_ENM1_Mh397","Sponge","Sponge",4
+"253","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh398","2023.8_ENM1_Mh398","Sponge","Sponge",1
+"254","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh399","2023.8_ENM1_Mh399","Sand and rubble","Rubble",2
+"255","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh238","2023.8_ENM1_Mh238","Sand and rubble","Rubble",3
+"256","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh233","2023.8_ENM1_Mh233","Sand and rubble","Rubble",6
+"257","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh237","2023.8_ENM1_Mh237","Sponge","Sponge",0
+"258","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh411","2023.8_ENM-Expuesto1_Mh411","Pavement","Dead coral",3
+"259","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh412","2023.8_ENM-Expuesto1_Mh412","Pavement","Dead coral",9
+"260","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh413","2023.8_ENM-Expuesto1_Mh413","Pavement","Dead coral",4
+"261","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh414","2023.8_ENM-Expuesto1_Mh414","Pavement","Dead coral",9
+"262","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh415","2023.8_ENM-Expuesto1_Mh415","Pavement with holes","Dead coral",8
+"263","45180","2023",8,"Mexico","Enmedio","ENM-Expuesto1","Front","19.105589999999999",-95.92812,"Roving Quadrant","Q","Mh416","2023.8_ENM-Expuesto1_Mh416","Pavement with holes","Dead coral",8
+"264","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh417","2023.8_ENM1_Mh417","Sand and rubble","Rubble",13
+"265","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh418","2023.8_ENM1_Mh418","Sand and rubble","Rubble",6
+"266","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh419","2023.8_ENM1_Mh419","Sand and rubble","Rubble",7
+"267","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh420","2023.8_ENM1_Mh420","Sand and rubble","Rubble",6
+"268","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh201","2023.8_ENM1_Mh201","Sand and rubble","Rubble",9
+"269","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh202","2023.8_ENM1_Mh202","Sand and rubble","Rubble",10
+"270","45180","2023",8,"Mexico","Enmedio","ENM1","Back","19.100349999999999",-95.9408,"Roving Quadrant","Q","Mh203","2023.8_ENM1_Mh203","Sand and rubble","Rubble",10
+"271","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh234","2023.8_Ensenada_Mh234","Algae","Algae",0
+"272","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh235","2023.8_Ensenada_Mh235","Algae","Algae",0
+"273","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh236","2023.8_Ensenada_Mh236","Algae","Algae",1
+"274","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh280","2023.8_ENM-Expuesto2_Mh280","Coral","Scleractinian coral",0
+"275","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh281","2023.8_ENM-Expuesto2_Mh281","Coral","Scleractinian coral",0
+"276","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh282","2023.8_ENM-Expuesto2_Mh282","Coral","Scleractinian coral",0
+"277","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh283","2023.8_ENM-Expuesto2_Mh283","Coral","Scleractinian coral",0
+"278","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh284","2023.8_ENM-Expuesto2_Mh284","Coral","Scleractinian coral",0
+"279","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh285","2023.8_ENM-Expuesto2_Mh285","Turf","Turf",2
+"280","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh450","2023.8_ENM-Expuesto2_Mh450","Coral","Scleractinian coral",0
+"281","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh451","2023.8_ENM-Expuesto2_Mh451","Coral","Scleractinian coral",1
+"282","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh204","2023.8_Ensenada_Mh204","Algae","Algae",0
+"283","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh205","2023.8_Ensenada_Mh205","Algae with fine sediment","Algae",0
+"284","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh206","2023.8_Ensenada_Mh206","Algae","Algae",1
+"285","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh207","2023.8_Ensenada_Mh207","Algae","Algae",0
+"286","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh208","2023.8_Ensenada_Mh208","Algae","Algae",0
+"287","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh209","2023.8_Ensenada_Mh209","Algae","Algae",0
+"288","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh210","2023.8_Ensenada_Mh210","Algae","Algae",0
+"289","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh440","2023.8_ENM-Expuesto2_Mh440","Pavement","Dead coral",8
+"290","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh441","2023.8_ENM-Expuesto2_Mh441","Coral","Scleractinian coral",0
+"291","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh442","2023.8_ENM-Expuesto2_Mh442","Turf","Turf",2
+"292","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh443","2023.8_ENM-Expuesto2_Mh443","Turf","Turf",4
+"293","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh444","2023.8_ENM-Expuesto2_Mh444","Coral","Scleractinian coral",3
+"294","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh445","2023.8_ENM-Expuesto2_Mh445","Coral","Scleractinian coral",4
+"295","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh446","2023.8_ENM-Expuesto2_Mh446","Turf","Turf",6
+"296","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh447","2023.8_ENM-Expuesto2_Mh447","Turf","Turf",11
+"297","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh430","2023.8_ENM-Expuesto2_Mh430","Coral","Scleractinian coral",1
+"298","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh431","2023.8_ENM-Expuesto2_Mh431","Coral","Scleractinian coral",2
+"299","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh432","2023.8_ENM-Expuesto2_Mh432","Death coral","Dead coral",3
+"300","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh433","2023.8_ENM-Expuesto2_Mh433","Death coral","Dead coral",1
+"301","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh434","2023.8_ENM-Expuesto2_Mh434","Death coral","Dead coral",2
+"302","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh435","2023.8_ENM-Expuesto2_Mh435","Coral","Scleractinian coral",3
+"303","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh436","2023.8_ENM-Expuesto2_Mh436","Coral","Scleractinian coral",2
+"304","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh437","2023.8_ENM-Expuesto2_Mh437","Death coral","Dead coral",9
+"305","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh438","2023.8_ENM-Expuesto2_Mh438","Death coral","Dead coral",5
+"306","45182","2023",8,"Mexico","Enmedio","ENM-Expuesto2","Front","19.112629999999999",-95.9363,"Roving Quadrant","Q","Mh439","2023.8_ENM-Expuesto2_Mh439","Pavement","Dead coral",1
+"307","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh171","2023.8_Ensenada_Mh171","Algae","Algae",0
+"308","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh172","2023.8_Ensenada_Mh172","Algae","Algae",0
+"309","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh173","2023.8_Ensenada_Mh173","Algae","Algae",0
+"310","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh174","2023.8_Ensenada_Mh174","Algae","Algae",0
+"311","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh175","2023.8_Ensenada_Mh175","Algae","Algae",0
+"312","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh176","2023.8_Ensenada_Mh176","Algae","Algae",0
+"313","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh177","2023.8_Ensenada_Mh177","Algae","Algae",0
+"314","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh178","2023.8_Ensenada_Mh178","Algae","Algae",0
+"315","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh179","2023.8_Ensenada_Mh179","Algae","Algae",0
+"316","45181","2023",8,"Mexico","Cabezo","Ensenada","Back","19.083659999999998",-95.86552,"Roving Quadrant","Q","Mh180","2023.8_Ensenada_Mh180","Algae","Algae",0
+"317","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh309","2023.8_ENM-Gorgonias_Mh309","Gorgonia","Gorgonia",0
+"318","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh310","2023.8_ENM-Gorgonias_Mh310","Gorgonia","Gorgonia",0
+"319","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh311","2023.8_ENM-Gorgonias_Mh311","Gorgonia","Gorgonia",0
+"320","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh312","2023.8_ENM-Gorgonias_Mh312","Gorgonia","Gorgonia",0
+"321","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh313","2023.8_ENM-Gorgonias_Mh313","Gorgonia","Gorgonia",0
+"322","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh314","2023.8_ENM-Gorgonias_Mh314","Gorgonia","Gorgonia",0
+"323","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh315","2023.8_ENM-Gorgonias_Mh315","Gorgonia","Gorgonia",0
+"324","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh316","2023.8_ENM-Gorgonias_Mh316","Gorgonia","Gorgonia",0
+"325","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh317","2023.8_ENM-Gorgonias_Mh317","Gorgonia","Gorgonia",2
+"326","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh452","2023.8_ENM-Gorgonias_Mh452","Gorgonia","Gorgonia",0
+"327","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh453","2023.8_ENM-Gorgonias_Mh453","Gorgonia","Gorgonia",0
+"328","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh454","2023.8_ENM-Gorgonias_Mh454","Sponge","Sponge",0
+"329","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh455","2023.8_ENM-Gorgonias_Mh455","Sponge","Sponge",0
+"330","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh456","2023.8_ENM-Gorgonias_Mh456","Sponge","Sponge",0
+"331","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh457","2023.8_ENM-Gorgonias_Mh457","Gorgonia","Gorgonia",0
+"332","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh308","2023.8_ENM-Gorgonias_Mh308","Gorgonia","Gorgonia",0
+"333","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh299","2023.8_ENM-Gorgonias_Mh299","Gorgonia","Gorgonia",0
+"334","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh300","2023.8_ENM-Gorgonias_Mh300","Gorgonia","Gorgonia",0
+"335","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh301","2023.8_ENM-Gorgonias_Mh301","Cave","Cave",0
+"336","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh319","2023.8_ENM-Gorgonias_Mh319","Gorgonia","Gorgonia",0
+"337","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh320","2023.8_ENM-Gorgonias_Mh320","Gorgonia","Gorgonia",0
+"338","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh321","2023.8_ENM-Gorgonias_Mh321","Gorgonia","Gorgonia",0
+"339","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh322","2023.8_ENM-Gorgonias_Mh322","Gorgonia","Gorgonia",0
+"340","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh323","2023.8_ENM-Gorgonias_Mh323","Gorgonia","Gorgonia",0
+"341","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh324","2023.8_ENM-Gorgonias_Mh324","Gorgonia","Gorgonia",0
+"342","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh325","2023.8_ENM-Gorgonias_Mh325","Gorgonia","Gorgonia",1
+"343","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh326","2023.8_ENM-Gorgonias_Mh326","Gorgonia","Gorgonia",1
+"344","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh327","2023.8_ENM-Gorgonias_Mh327","Gorgonia","Gorgonia",0
+"345","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh328","2023.8_ENM-Gorgonias_Mh328","Gorgonia","Gorgonia",0
+"346","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh139","2023.8_ENM-Gorgonias_Mh139","Gorgonia","Gorgonia",0
+"347","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh140","2023.8_ENM-Gorgonias_Mh140","Gorgonia","Gorgonia",0
+"348","45183","2023",8,"Mexico","Enmedio","ENM-Gorgonias","Back","19.099219999999999",-95.94158,"Roving Quadrant","Q","Mh141","2023.8_ENM-Gorgonias_Mh141","Gorgonia","Gorgonia",0
+"349","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh129","2023.8_VRD-Cated_Mh129",NA,"Scleractinian coral",6
+"350","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh130","2023.8_VRD-Cated_Mh130",NA,"Scleractinian coral",4
+"351","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh131","2023.8_VRD-Faro_Mh131",NA,"Scleractinian coral",3
+"352","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh132","2023.8_VRD-Cated_Mh132",NA,"Scleractinian coral",3
+"353","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh133","2023.8_VRD-Faro_Mh133",NA,"Scleractinian coral",2
+"354","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh134","2023.8_VRD-Faro_Mh134",NA,"Scleractinian coral",2
+"355","45167","2023",8,"Mexico","Verde","VRD-Cated","Back","19.206939999999999",-96.07362,"Roving Quadrant","Q","Mh138","2023.8_VRD-Cated_Mh138",NA,"Scleractinian coral",3
+"356","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh135","2023.8_VRD-Faro_Mh135",NA,"Scleractinian coral",3
+"357","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh136","2023.8_VRD-Faro_Mh136",NA,"Scleractinian coral",3
+"358","45167","2023",8,"Mexico","Verde","VRD-Faro","Back","0",0,"Roving Quadrant","Q","Mh137","2023.8_VRD-Faro_Mh137",NA,"Scleractinian coral",4
